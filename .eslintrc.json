@@ -1,3 +1,46 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": "next/core-web-vitals",
+  "rules": {
+    "indent": [
+      "error",
+      2,
+      {
+        "SwitchCase": 1,
+        "ignoredNodes": [
+          "PropertyDefinition"
+        ]
+      }
+    ],
+    "quotes": [
+      "error",
+      "single",
+      {
+        "avoidEscape": true,
+        "allowTemplateLiterals": true
+      }
+    ],
+    "semi": [
+      "warn",
+      "always"
+    ],
+    "comma-dangle": [
+      "error",
+      "always-multiline"
+    ],
+    "eqeqeq": "warn",
+    "no-cond-assign": [
+      "warn",
+      "always"
+    ],
+    "no-console": "warn",
+    "brace-style": [
+      "warn",
+      "1tbs"
+    ],
+    "strict": [
+      "error",
+      "safe"
+    ]
+  }
 }
+
