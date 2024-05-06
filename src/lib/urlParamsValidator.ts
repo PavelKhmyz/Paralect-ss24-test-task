@@ -6,8 +6,8 @@ export const urlParamsValidator = async (url: string, validator: AnyZodObject) =
   try {
     return await validator.parseAsync({
       ...Object.fromEntries(searchParams),
-    })
+    });
   } catch (error) {
-    throw error
+    throw error;
   }
-}
+};

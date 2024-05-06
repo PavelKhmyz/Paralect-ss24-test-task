@@ -1,6 +1,10 @@
 import React from 'react';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
+import { ColorSchemeScript, Flex, MantineProvider } from '@mantine/core';
+import { NavigationBar } from '@/components/NavigationBar/NavigationBar';
+import StoreProvider from '@/app/StoreProvider';
+import '@mantine/core/styles.css';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -16,7 +20,19 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <head>
+        <ColorSchemeScript/>
+      </head>
+      <body className={inter.className}>
+        <StoreProvider>
+          <MantineProvider>
+            <Flex>
+              <NavigationBar />
+              {children}
+            </Flex>
+          </MantineProvider>
+        </StoreProvider>
+      </body>
     </html>
   );
 }

@@ -1,25 +1,20 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { clientMoviesRepository } from '@/app/api/MovieRepository';
-import { IGenre } from '@/app/api/movie-list/route';
+import React from 'react';
+import { SearchBar } from '@/components/SearchBar/SearchBar';
+import { Flex } from '@mantine/core';
 
-const Home = () => {
-  const [genres, setGenres] = useState<IGenre[]>([]);
-
-  useEffect(() => {
-    (async () => {
-      const response = await clientMoviesRepository.getGenres('/movie-list');
-
-      setGenres(response.genres);
-    })();
-  }, []);
+const Movies = () => {
 
   return (
-    <>
-      {genres.map((genre) => (<h2 key={genre.id}>{genre.name}</h2>))}
-    </>
+    <Flex
+      style={{ padding: '40px 90px 0px 90px' }}
+      direction='column'
+    >
+      <h1 style={{ marginBottom: '42px' }}>Movie</h1>
+      <SearchBar />
+    </Flex>
   );
 };
 
-export default Home;
+export default Movies;

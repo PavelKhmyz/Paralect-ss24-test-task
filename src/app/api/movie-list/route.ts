@@ -1,7 +1,7 @@
-import { z } from 'zod';
 import { NextRequest, NextResponse } from 'next/server';
 import { serverMoviesRepository } from '@/app/api/MovieRepository';
 import { urlParamsValidator } from '@/lib/urlParamsValidator';
+import { genresValidator } from '@/lib/validators';
 
 export interface IGenre {
   id: string;
@@ -11,14 +11,6 @@ export interface IGenre {
 export interface IGenres {
   genres: IGenre[];
 }
-
-enum GenresLanguages {
-  en = 'en',
-}
-
-const genresValidator = z.object({
-  language: z.nativeEnum(GenresLanguages).default(GenresLanguages.en),
-});
 
 export const GET = async (request: NextRequest) => {
   try {

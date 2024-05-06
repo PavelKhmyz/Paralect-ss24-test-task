@@ -1,8 +1,8 @@
-import { z } from 'zod';
 import { NextRequest, NextResponse } from 'next/server';
 import { serverMoviesRepository } from '@/app/api/MovieRepository';
 import { urlParamsValidator } from '@/lib/urlParamsValidator';
 import { IGenre } from '@/app/api/movie-list/route';
+import { movieDetailsValidator } from '@/lib/validators';
 
 interface IProductionCompanies {
   id: number;
@@ -40,14 +40,6 @@ export interface IMovieDetails {
     results: IVideos[]
   }
 }
-
-enum Languages {
-  en = 'en-US',
-}
-
-const movieDetailsValidator = z.object({
-  language: z.nativeEnum(Languages).default(Languages.en),
-});
 
 export const GET = async (request: NextRequest, { params }: { params: { id: string } }) => {
   try {
