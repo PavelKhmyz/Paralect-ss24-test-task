@@ -1,10 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { serverMoviesRepository } from '@/app/api/MovieRepository';
-import { urlParamsValidator } from '@/lib/urlParamsValidator';
+import { paramsValidator } from '@/lib/urlParamsValidator';
 import { genresValidator } from '@/lib/validators';
 
 export interface IGenre {
-  id: string;
+  id: number;
   name: string;
 }
 
@@ -13,16 +13,22 @@ export interface IGenres {
 }
 
 export const GET = async (request: NextRequest) => {
-  try {
-    const validatedSearchParams = await urlParamsValidator(request.url, genresValidator);
+  const { searchParams } = new URL(request.url);
 
-    const searchParams = new URLSearchParams(validatedSearchParams);
+  const result = paramsValidator(Object.fromEntries(searchParams), genresValidator);
 
-    const response = await serverMoviesRepository.getGenres(`/genre/movie/list?${searchParams}`);
+  if(result.success) {
+    const validatedSearchParams = new URLSearchParams(result.data);
 
-    return NextResponse.json(response);
-  } catch (error) {
-    return NextResponse.json({ error }, {
+    try {
+      const response = await serverMoviesRepository.getGenres(`/genre/movie/list?${validatedSearchParams}`);
+
+      return NextResponse.json(response);
+    } catch (error) {
+      return new NextResponse( 'Fetch TMDB is failed' , {status: 502});
+    }
+  } else {
+    return NextResponse.json({ error: result.errors }, {
       status: 400,
     });
   }

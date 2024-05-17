@@ -1,0 +1,32 @@
+@use './variables' as v;
+
+:focus,
+:active {
+  outline: none;
+}
+
+*{
+  color: black;
+}
+
+a {
+  text-decoration: none;
+  &:visited {
+    text-decoration: none;
+  }
+  &:hover {
+    text-decoration: none;
+  }
+  &:focus {
+    outline: none;
+  }
+  &:active {
+      outline: none;
+    }
+}
+
+.nav-bar {
+  gap: 10px;
+  background-color: v.$purple100;
+  padding: 24px;
+}

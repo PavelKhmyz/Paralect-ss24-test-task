@@ -1,0 +1,22 @@
+@use '../../app/variables' as v;
+
+.nav-link {
+    width: 232px;
+    height: 42px;
+    border-radius: 8px;
+    padding: 10px;
+
+    &:hover {
+        color: v.$purple400;
+    }
+}
+
+.nav-link-active {
+    background-color: v.$purple200;
+    color: v.$purple500;
+    font-weight: 700;
+}
+
+.logo-link {
+    margin-bottom: 70px;
+}

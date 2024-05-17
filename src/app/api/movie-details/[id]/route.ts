@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { serverMoviesRepository } from '@/app/api/MovieRepository';
-import { urlParamsValidator } from '@/lib/urlParamsValidator';
+import { paramsValidator } from '@/lib/urlParamsValidator';
 import { IGenre } from '@/app/api/movie-list/route';
 import { movieDetailsValidator } from '@/lib/validators';
 
@@ -42,19 +42,25 @@ export interface IMovieDetails {
 }
 
 export const GET = async (request: NextRequest, { params }: { params: { id: string } }) => {
-  try {
-    const validatedSearchParams = await urlParamsValidator(request.url, movieDetailsValidator);
+  const { searchParams } = new URL(request.url);
 
-    const searchParams = new URLSearchParams({
-      ...validatedSearchParams,
+  const result = paramsValidator(Object.fromEntries(searchParams), movieDetailsValidator);
+
+  if(result.success) {
+    const validatedSearchParams = new URLSearchParams({
+      ...result.data,
       append_to_response: 'videos',
     });
 
-    const response = await serverMoviesRepository.getMovieById(`/movie/${params.id}?${searchParams}`);
+    try {
+      const response = await serverMoviesRepository.getMovies(`/movie/${params.id}?${validatedSearchParams}`);
 
-    return NextResponse.json(response);
-  } catch (error) {
-    return NextResponse.json({ error }, {
+      return NextResponse.json(response);
+    } catch (error) {
+      return new NextResponse( 'Fetch TMDB is failed' , {status: 502});
+    }
+  } else {
+    return NextResponse.json({ error: result.errors }, {
       status: 400,
     });
   }

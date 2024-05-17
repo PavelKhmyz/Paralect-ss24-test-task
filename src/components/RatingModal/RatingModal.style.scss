@@ -1,0 +1,88 @@
+@use '../../app/variables' as v;
+
+.mantine-Modal-content {
+  border-radius: 8px;
+
+  .mantine-Modal-header {
+    border-bottom: 1px solid v.$grey200;
+
+    .mantine-Modal-close{
+      border-radius: 8px;
+
+      svg {
+        path {
+          fill: v.$grey500;
+        }
+      }
+
+      &:hover {
+        background-color: inherit;
+
+        svg {
+          path {
+            fill: v.$purple400;
+          }
+        }
+      }
+
+      &:active {
+        svg {
+          path {
+            fill: v.$purple600;
+          }
+        }
+      }
+    }
+  }
+
+  .mantine-Modal-body {
+    padding: 16px;
+    gap: 16px;
+
+    .modal-title {
+      margin-top: 0;
+      margin-bottom: 16px;
+    }
+
+    .mantine-Rating-root {
+      justify-content: space-between;
+    }
+
+    .modal-buttons{
+      margin-top: 16px;
+      display: flex;
+      gap: 16px;
+
+      .mantine-Button-root {
+        border-radius: 8px;
+        background-color: v.$purple500;
+
+        span {
+          color: white;
+        }
+
+        &:hover {
+          background-color: v.$purple400;
+        }
+
+        &:active {
+          background-color: v.$purple600;
+        }
+      }
+
+      .mantine-UnstyledButton-root {
+        color: v.$purple500;
+        font-size: 14px;
+        font-weight: 600;
+
+        &:hover {
+          color: v.$purple400;
+        }
+
+        &:active {
+          color: v.$purple600;
+        }
+      }
+    }
+  }
+}

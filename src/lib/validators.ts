@@ -26,13 +26,17 @@ enum GenresLanguages {
 }
 
 export const moviesValidator = z.object({
-  with_genres: z.string().optional(),
-  primary_release_year: z.coerce.number().optional(),
+  with_genres: z.string().array().or(z.string()).optional(),
+  primary_release_year: z.coerce.number({
+    message: 'Invalid release year',
+  }).optional(),
   language: z.nativeEnum(Languages).default(Languages.en),
   page: z.coerce.number().default(1),
-  sort_by: z.nativeEnum(SortBy).default(SortBy.popularityDesc),
-  'vote_average.lte': z.coerce.number().optional(),
-  'vote_average.gte': z.coerce.number().optional(),
+  sort_by: z.nativeEnum(SortBy, {
+    message: 'Invalid sort params',
+  }).default(SortBy.popularityDesc),
+  'vote_average.lte': z.coerce.number().gte(0, 'Minimal value is 0').lte(10, 'Maximum value is 10').optional(),
+  'vote_average.gte': z.coerce.number().gte(0, 'Minimal value is 0').lte(10, 'Maximum value is 10').optional(),
 });
 
 export const genresValidator = z.object({

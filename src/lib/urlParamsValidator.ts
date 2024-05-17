@@ -1,13 +1,17 @@
 import { AnyZodObject } from 'zod';
 
-export const urlParamsValidator = async (url: string, validator: AnyZodObject) => {
-  const { searchParams } = new URL(url);
+export const paramsValidator = (data: Record<string, any>, validator: AnyZodObject) => {
+  const validated = validator.safeParse(data);
 
-  try {
-    return await validator.parseAsync({
-      ...Object.fromEntries(searchParams),
-    });
-  } catch (error) {
-    throw error;
+  if(!validated.success) {
+    const errorObj: any = {};
+    validated.error.issues.forEach(error => errorObj[error.path[0]] = error.message);
+
+    return {
+      success: validated.success,
+      errors: errorObj,
+    };
   }
+
+  return validated;
 };

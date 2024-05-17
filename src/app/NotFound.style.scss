@@ -1,0 +1,31 @@
+@use './variables' as v;
+
+.not-found-wrapper {
+  height: 100vh;
+  background-color: v.$grey100;
+
+  h3 {
+    font-size: 20px;
+    margin-top: 48px;
+    margin-bottom: 0;
+  }
+
+  .mantine-Button-root {
+    border-radius: 8px;
+    background-color: v.$purple500;
+    padding: 10px 20px 10px 20px;
+    margin-top: 16px;
+
+    span {
+      color: white;
+    }
+
+    &:hover {
+      background-color: v.$purple400;
+    }
+
+    &:active {
+      background-color: v.$purple600;
+    }
+  }
+}
