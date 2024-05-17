@@ -4,14 +4,14 @@ import { paramsValidator } from '@/lib/urlParamsValidator';
 import { IGenre } from '@/app/api/movie-list/route';
 import { movieDetailsValidator } from '@/lib/validators';
 
-interface IProductionCompanies {
+export interface IProductionCompanies {
   id: number;
   logo_path: string;
   name: string;
   origin_country: string;
 }
 
-interface IVideos {
+export interface IVideos {
   iso_639_1: string;
   iso_3166_1: string;
   name: string;
@@ -25,6 +25,8 @@ interface IVideos {
 }
 
 export interface IMovieDetails {
+  id: number;
+  title: string;
   original_title: string;
   poster_path: string;
   release_date: string;

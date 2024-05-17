@@ -1,0 +1,20 @@
+@use '../../variables' as v;
+
+.movie-wrapper {
+  background: v.$grey100;
+  min-height: 100vh;
+  gap: 20px;
+  padding: 40px 180px;
+
+  .breadcrumb-link {
+    color: v.$purple500;
+
+    &:hover {
+      color: v.$purple400;
+    }
+
+    &:active {
+      color: v.$purple600;
+    }
+  }
+}

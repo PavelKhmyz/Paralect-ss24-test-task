@@ -1,5 +1,4 @@
 import { Flex, UnstyledButton } from '@mantine/core';
-import { IMovie } from '@/app/api/movies/route';
 import NextImage from 'next/image';
 import { Image } from '@mantine/core';
 import { IconStarFilled } from '@tabler/icons-react';
@@ -8,26 +7,25 @@ import Link from 'next/link';
 import NoPoster from 'public/NoPoster.svg';
 import { useDisclosure } from '@mantine/hooks';
 import { RatingModal } from '@/components/RatingModal/RatingModal';
-import './MovieCard.style.scss';
 import { removeRating, setRating } from '@/app/(movies)/rated-movies/RatedMovies.slice';
 import { useEffect } from 'react';
 import { getGenres } from '@/components/FiltersBar/Filters.slice';
-import { usePathname } from 'next/navigation';
+import './MovieCard.style.scss';
+import { IMovieDetails } from '@/app/api/movie-details/[id]/route';
 
 const imageUrl = 'https://image.tmdb.org/t/p/';
 
 interface ICardProps {
-  movie: IMovie;
+  movie: IMovieDetails;
 }
 
-export const MovieCard = ({ movie }: ICardProps) => {
-  const pathName = usePathname();
+export const MovieCardExtended = ({ movie }: ICardProps) => {
   const dispatch = useAppDispatch();
   const { userRating } = useAppSelector(state => state.rated);
   const { genres } = useAppSelector(state => state.filters);
   const [opened, { open, close }] = useDisclosure(false);
   const releaseYear = new Date(movie.release_date).getFullYear();
-  const movieGenre = movie.genre_ids?.map((id) => genres.find(i => i.id === id));
+  const movieGenre = movie.genres.map(genre => genre.name);
 
   useEffect(() => {
     dispatch(getGenres());
@@ -47,9 +45,9 @@ export const MovieCard = ({ movie }: ICardProps) => {
         className='movie-card-wrapper'
         direction='row'
       >
-        <Link href={pathName === '/' ? `movies/${movie.id}` : `${pathName}/${movie.id}`} className='movie-card-link'>
+        <Link href={`/movie/${movie.id}`} className='movie-card-link'>
           {movie.poster_path
-            ? <Image w={119} src={`${imageUrl}w200${movie['poster_path']}`} alt='poster'/>
+            ? <Image w={250} src={`${imageUrl}w300${movie['poster_path']}`} alt='poster'/>
             : <div className='movie-card-no-image'><NextImage src={NoPoster} alt='no-poster'/></div>
           }
           <Flex direction='column'>
@@ -61,8 +59,24 @@ export const MovieCard = ({ movie }: ICardProps) => {
               <span>{`(${movie.vote_count || 0})`}</span>
             </p>
             <p className='movie-card-genres'>
+              <span>Duration</span>
+              <span>{movie.runtime}</span>
+            </p>
+            <p className='movie-card-genres'>
+              <span>Premiere</span>
+              <span>{movie.release_date}</span>
+            </p>
+            <p className='movie-card-genres'>
+              <span>Budget</span>
+              <span>{movie.budget}</span>
+            </p>
+            <p className='movie-card-genres'>
+              <span>Gross worldwide</span>
+              <span>{movie.revenue}</span>
+            </p>
+            <p className='movie-card-genres'>
               <span>Genres</span>
-              <span>{movieGenre?.map(el => el?.name).join(', ')}</span>
+              <span>{movieGenre.map(el => el).join(', ')}</span>
             </p>
           </Flex>
         </Link>
