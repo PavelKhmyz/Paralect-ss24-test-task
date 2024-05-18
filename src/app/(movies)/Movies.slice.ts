@@ -1,10 +1,10 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { IMovie } from '@/app/api/movies/route';
-import { clientMoviesRepository } from '@/app/api/MovieRepository';
+import { IMovie, IMovies } from '@/app/api/movies/route';
+import { clientMoviesRepository } from '@/lib/MovieRepository';
 import { removeFalsyElement } from '@/lib/removeFalsyElements';
 
 export interface IGetMovies {
-  with_genres?: string;
+  with_genres?: string[];
   primary_release_year?: number;
   language?: string;
   page?: number;
@@ -28,10 +28,10 @@ export const moviesInitialState: IMoviesState = {
   loading: false,
 };
 
-export const getMovies = createAsyncThunk('movies', async (params: IGetMovies) => {
+export const getMovies = createAsyncThunk('movies', async (params: IGetMovies, { rejectWithValue }) => {
   const searchParams = new URLSearchParams(removeFalsyElement(params));
 
-  return await clientMoviesRepository.getMovies(`/movies?${searchParams}`);
+  return await clientMoviesRepository.GET<IMovies>(`/movies?${searchParams}`);
 });
 
 const moviesSlice = createSlice({

@@ -1,6 +1,6 @@
 import { Button, Modal, Rating, UnstyledButton } from '@mantine/core';
-import './RatingModal.style.scss';
 import { useState } from 'react';
+import './RatingModal.style.scss';
 
 interface IRatingModal {
   opened: boolean;

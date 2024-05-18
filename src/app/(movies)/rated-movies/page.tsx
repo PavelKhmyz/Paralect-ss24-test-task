@@ -8,12 +8,17 @@ import { SearchInput } from '@/components/SearchInput/SearchInput';
 import { changePage, getAllRatedMovies, searchMovie } from '@/app/(movies)/rated-movies/RatedMovies.slice';
 import NextImage from 'next/image';
 import NotRated from 'public/NotRated.svg';
-import './RatedMovies.style.scss';
 import Link from 'next/link';
+import './RatedMovies.style.scss';
 
 const RatedMovies = () => {
   const dispatch = useAppDispatch();
-  const { ratedMovies, searchedMovies, page, totalPages } = useAppSelector(state => state.rated);
+  const {
+    ratedMovies,
+    searchedMovies,
+    page,
+    totalPages ,
+  } = useAppSelector(state => state.rated);
 
   useEffect(() => {
     dispatch(getAllRatedMovies());

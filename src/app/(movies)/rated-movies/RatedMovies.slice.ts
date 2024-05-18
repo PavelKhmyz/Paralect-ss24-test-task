@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { localStorageRepository } from '@/lib/LocalStorageRepository';
-import { IMovie, IMovies } from '@/app/api/movies/route';
+import { IMovie } from '@/app/api/movies/route';
 
 const MOVIES_ON_PAGE = 4;
 

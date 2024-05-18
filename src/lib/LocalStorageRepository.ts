@@ -9,6 +9,8 @@ class LocalStorageRepository {
     if(value) {
       return JSON.parse(value);
     }
+
+    return {};
   }
 
   public removeOne(key: string): void {

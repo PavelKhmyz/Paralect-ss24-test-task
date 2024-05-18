@@ -8,13 +8,11 @@ import Link from 'next/link';
 import NoPoster from 'public/NoPoster.svg';
 import { useDisclosure } from '@mantine/hooks';
 import { RatingModal } from '@/components/RatingModal/RatingModal';
-import './MovieCard.style.scss';
 import { removeRating, setRating } from '@/app/(movies)/rated-movies/RatedMovies.slice';
 import { useEffect } from 'react';
 import { getGenres } from '@/components/FiltersBar/Filters.slice';
 import { usePathname } from 'next/navigation';
-
-const imageUrl = 'https://image.tmdb.org/t/p/';
+import './MovieCard.style.scss';
 
 interface ICardProps {
   movie: IMovie;
@@ -26,12 +24,15 @@ export const MovieCard = ({ movie }: ICardProps) => {
   const { userRating } = useAppSelector(state => state.rated);
   const { genres } = useAppSelector(state => state.filters);
   const [opened, { open, close }] = useDisclosure(false);
+
   const releaseYear = new Date(movie.release_date).getFullYear();
   const movieGenre = movie.genre_ids?.map((id) => genres.find(i => i.id === id));
 
   useEffect(() => {
-    dispatch(getGenres());
-  }, [dispatch]);
+    if(!genres) {
+      dispatch(getGenres());
+    }
+  }, [dispatch, genres]);
 
   const handleChangeRating = (value: number) => {
     dispatch(setRating({ id: String(movie.id), rating: value, movie }));
@@ -49,7 +50,7 @@ export const MovieCard = ({ movie }: ICardProps) => {
       >
         <Link href={pathName === '/' ? `movies/${movie.id}` : `${pathName}/${movie.id}`} className='movie-card-link'>
           {movie.poster_path
-            ? <Image w={119} src={`${imageUrl}w200${movie['poster_path']}`} alt='poster'/>
+            ? <Image w={119} src={`${process.env.NEXT_PUBLIC_TMDB_IMG_BASE_URL}w200${movie['poster_path']}`} alt='poster'/>
             : <div className='movie-card-no-image'><NextImage src={NoPoster} alt='no-poster'/></div>
           }
           <Flex direction='column'>

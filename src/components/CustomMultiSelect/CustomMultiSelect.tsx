@@ -15,11 +15,12 @@ interface ICustomMultiSelect {
   label?: string;
   placeholder?: string;
   rightSection?: JSX.Element;
+  error?: string;
   onDropdownOpen?(): void;
   onDropdownClose?(): void;
 }
 
-export const CustomMultiSelect = ({ data, value, label, placeholder, onChange, rightSection, onDropdownOpen, onDropdownClose }: ICustomMultiSelect) => {
+export const CustomMultiSelect = ({ data, value, label, placeholder, onChange, rightSection, onDropdownOpen, onDropdownClose, error }: ICustomMultiSelect) => {
   const combobox = useCombobox({
     onDropdownClose: () => {
       combobox.resetSelectedOption();
@@ -61,19 +62,20 @@ export const CustomMultiSelect = ({ data, value, label, placeholder, onChange, r
       <label className='mantine-InputBase-label'>{label}</label>
       <Combobox.DropdownTarget>
         <InputBase
-          component="button"
-          type="button"
+          component='button'
+          type='button'
           pointer
           rightSection={rightSection ? rightSection : <Combobox.Chevron />}
           onClick={() => combobox.toggleDropdown()}
-          rightSectionPointerEvents="none"
+          rightSectionPointerEvents='none'
+          error={error}
         >
           {dataParser(value) || <Input.Placeholder>{placeholder}</Input.Placeholder>}
         </InputBase>
       </Combobox.DropdownTarget>
 
       <Combobox.Dropdown>
-        <ScrollArea.Autosize type="scroll" mah={200} scrollbarSize={4}>
+        <ScrollArea.Autosize type='scroll' mah={200} scrollbarSize={4}>
           {options}
         </ScrollArea.Autosize>
       </Combobox.Dropdown>

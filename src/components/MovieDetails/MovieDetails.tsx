@@ -1,9 +1,6 @@
 import { AspectRatio, Flex, Image } from '@mantine/core';
-import './MovieDetails.style.scss';
 import { IProductionCompanies, IVideos } from '@/app/api/movie-details/[id]/route';
-
-const yotubeUrl = 'https://www.youtube.com/embed/';
-const imageUrl = 'https://image.tmdb.org/t/p/';
+import './MovieDetails.style.scss';
 
 interface IMovieDetails {
   trailer?: IVideos[];
@@ -22,7 +19,7 @@ export const MovieDetails = ({ trailer, description, production }: IMovieDetails
         <h3>Trailer</h3>
         <AspectRatio ratio={16 / 9}>
           <iframe
-            src={yotubeUrl + trailer?.[0].key}
+            src={process.env.NEXT_PUBLIC_YOUTUBE_BASE_URL && process.env.NEXT_PUBLIC_YOUTUBE_BASE_URL + trailer?.[0].key}
             title="YouTube video player"
             style={{ border: 0 }}
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -45,7 +42,7 @@ export const MovieDetails = ({ trailer, description, production }: IMovieDetails
             direction='row'
             align='center'
           >
-            <Image src={`${imageUrl}w200${el.logo_path}`} alt='poster'/>
+            <Image src={`${process.env.NEXT_PUBLIC_TMDB_IMG_BASE_URL}w200${el.logo_path}`} alt='poster'/>
             <h4>{el.name}</h4>
           </Flex>
         ))}

@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { clientMoviesRepository } from '@/app/api/MovieRepository';
-import { IGenre } from '@/app/api/movie-list/route';
+import { clientMoviesRepository } from '@/lib/MovieRepository';
+import { IGenre, IGenres } from '@/app/api/movie-list/route';
 import { DateValue } from '@mantine/dates';
 
 interface IValidationErrors {
@@ -15,7 +15,6 @@ export interface IFiltersState {
   loading: boolean;
   with_genres: string[];
   primary_release_year: DateValue;
-  language: string;
   page: number;
   sort_by?: string | null;
   'vote_average.gte': number | string;
@@ -29,7 +28,6 @@ export const filtersInitialState: IFiltersState = {
   loading: false,
   with_genres: [],
   primary_release_year: null,
-  language: 'en-US',
   page: 1,
   sort_by: 'popularity.desc',
   'vote_average.gte': '',
@@ -47,7 +45,7 @@ export const getGenres = createAsyncThunk('genres', async (language?:string) => 
     language: language ? language : 'en',
   });
 
-  return await clientMoviesRepository.getGenres(`/movie-list?${searchParams}`);
+  return await clientMoviesRepository.GET<IGenres>(`/movie-list?${searchParams}`);
 });
 
 const filtersSlice = createSlice({
@@ -73,11 +71,6 @@ const filtersSlice = createSlice({
       state.page = 1;
     },
 
-    changeLanguage(state, action: PayloadAction<string>) {
-      state.language = action.payload;
-      state.page = 1;
-    },
-
     changeRatingGte(state, action: PayloadAction<number | string>) {
       state['vote_average.gte'] = action.payload;
       state.page = 1;
@@ -95,7 +88,6 @@ const filtersSlice = createSlice({
     resetFilters(state) {
       state.with_genres = [];
       state.primary_release_year = null;
-      state.language = 'en-US';
       state.page = 1;
       state.sort_by = 'popularity.desc';
       state['vote_average.gte'] = '';
@@ -143,7 +135,6 @@ export const {
   changeYear,
   changePage,
   changeSort,
-  changeLanguage,
   changeRatingLte,
   changeRatingGte,
   resetFilters,

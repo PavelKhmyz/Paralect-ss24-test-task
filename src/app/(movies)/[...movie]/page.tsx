@@ -1,26 +1,27 @@
 'use client';
 
-import { notFound, usePathname } from 'next/navigation';
-import { clientMoviesRepository } from '@/app/api/MovieRepository';
-import { paramsValidator } from '@/lib/urlParamsValidator';
+import { notFound } from 'next/navigation';
+import { clientMoviesRepository } from '@/lib/MovieRepository';
+import { paramsValidator } from '@/lib/paramsValidator';
 import { movieDetailsValidator } from '@/lib/validators';
 import { useEffect, useState } from 'react';
-import { IMovieDetails } from '@/app/api/movie-details/[id]/route';
+import { IGetMovieDetails, IMovieDetails } from '@/app/api/movie-details/[id]/route';
 import { MovieCardExtended } from '@/components/MovieCard/MovieCardExtended';
 import { Breadcrumbs, Flex } from '@mantine/core';
-import './Movie.style.scss';
 import { MovieDetails } from '@/components/MovieDetails/MovieDetails';
 import Link from 'next/link';
+import { removeFalsyElement } from '@/lib/removeFalsyElements';
+import './Movie.style.scss';
 
 const navigateRegex = /(movie|rated-movie)/;
 
 const fetchMovie = async (id: string) => {
-  const result = paramsValidator({ language: 'en-US' }, movieDetailsValidator);
+  const validationResult = paramsValidator<IGetMovieDetails>({}, movieDetailsValidator);
 
-  if(result.success) {
-    const searchParams = new URLSearchParams(result.data);
+  if(validationResult.success && validationResult.data) {
+    const searchParams = new URLSearchParams(removeFalsyElement(validationResult.data));
 
-    return await clientMoviesRepository.getMovieById(`/movie-details/${id}?${searchParams}`);
+    return await clientMoviesRepository.GET<IMovieDetails>(`/movie-details/${id}?${searchParams}`);
   }
 };
 

@@ -1,23 +1,19 @@
 import { NextResponse } from 'next/server';
-import { serverMoviesRepository } from '@/app/api/MovieRepository';
-import { paramsValidator } from '@/lib/urlParamsValidator';
+import { serverMoviesRepository } from '@/lib/MovieRepository';
+import { paramsValidator } from '@/lib/paramsValidator';
 import { moviesValidator } from '@/lib/validators';
+import { IGetMovies } from '@/app/(movies)/Movies.slice';
+import { removeFalsyElement } from '@/lib/removeFalsyElements';
 
 export interface IMovie {
-  adult: boolean;
-  backdrop_path: string;
-  genre_ids: number[];
   id: number;
-  original_language: string;
+  title: string;
   original_title: string;
-  overview: string;
-  popularity: number;
   poster_path: string;
   release_date: string;
-  title: string;
-  video: boolean;
   vote_average: number;
   vote_count: number;
+  genre_ids: number[];
 }
 
 export interface IMovies {
@@ -27,24 +23,31 @@ export interface IMovies {
   total_results: number;
 }
 
-export const GET = async (request: Request, res: Response) => {
+export const GET = async (request: Request) => {
   const { searchParams } = new URL(request.url);
 
-  const result = paramsValidator(Object.fromEntries(searchParams), moviesValidator);
+  const searchParamsObject = Object.fromEntries(searchParams);
 
-  if(result.success) {
-    const validatedSearchParams = new URLSearchParams(result.data);
+  const paramsToValidate = {
+    ...searchParamsObject,
+    with_genres: searchParamsObject.with_genres ? searchParamsObject.with_genres.split(',') : undefined,
+  };
+
+  const validationResult = paramsValidator<IGetMovies>(paramsToValidate, moviesValidator);
+
+  if(validationResult.success && validationResult.data) {
+    const validatedSearchParams = new URLSearchParams(removeFalsyElement(validationResult.data));
 
     try {
-      const response = await serverMoviesRepository.getMovies(`/discover/movie?${validatedSearchParams}`);
+      const response = await serverMoviesRepository.GET<IMovies>(`/discover/movie?${validatedSearchParams}`);
 
       return NextResponse.json(response);
     } catch (error) {
-      return new NextResponse( 'Fetch TMDB is failed' , {status: 502});
+      return NextResponse.json( 'Fetch TMDB is failed' , {status: 502});
     }
-  } else {
-    return NextResponse.json({ error: result.errors }, {
-      status: 400,
-    });
   }
+
+  return NextResponse.json('Validation is fail', {
+    status: 400,
+  });
 };

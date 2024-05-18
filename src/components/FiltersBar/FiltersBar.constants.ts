@@ -1,0 +1,16 @@
+export const filterSortParams = [
+  {value: 'original_title.asc', label: 'Original Title Ascending'},
+  {value: 'original_title.desc', label: 'Original Title Descending'},
+  {value: 'popularity.asc', label: 'Least Popular'},
+  {value: 'popularity.desc', label: 'Most Popular'},
+  {value: 'revenue.asc', label: 'Least Revenued'},
+  {value: 'revenue.desc', label: 'Most Revenued'},
+  {value: 'primary_release_date.asc', label: 'Released Date Ascending'},
+  {value: 'primary_release_date.desc', label: 'Released Date Descending'},
+  {value: 'title.asc', label: 'Title Ascending'},
+  {value: 'title.desc', label: 'Title Descending'},
+  {value: 'vote_average.asc', label: 'Least Average Voted'},
+  {value: 'vote_average.desc', label: 'Most Average Voted'},
+  {value: 'vote_count.asc', label: 'Least Voted'},
+  {value: 'vote_count.desc', label: 'Most Voted'},
+];

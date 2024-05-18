@@ -10,30 +10,16 @@ import {
   changeYear,
   resetFilters,
 } from '@/components/FiltersBar/Filters.slice';
-import './FiltersBar.style.scss';
 import { useCallback, useEffect, useState } from 'react';
 import { CustomMultiSelect } from '@/components/CustomMultiSelect/CustomMultiSelect';
-
-const sortParams = [
-  {value: 'original_title.asc', label: 'Original Title Ascending'},
-  {value: 'original_title.desc', label: 'Original Title Descending'},
-  {value: 'popularity.asc', label: 'Least Popular'},
-  {value: 'popularity.desc', label: 'Most Popular'},
-  {value: 'revenue.asc', label: 'Least Revenued'},
-  {value: 'revenue.desc', label: 'Most Revenued'},
-  {value: 'primary_release_date.asc', label: 'Released Date Ascending'},
-  {value: 'primary_release_date.desc', label: 'Released Date Descending'},
-  {value: 'title.asc', label: 'Title Ascending'},
-  {value: 'title.desc', label: 'Title Descending'},
-  {value: 'vote_average.asc', label: 'Least Average Voted'},
-  {value: 'vote_average.desc', label: 'Most Average Voted'},
-  {value: 'vote_count.asc', label: 'Least Voted'},
-  {value: 'vote_count.desc', label: 'Most Voted'},
-];
+import { filterSortParams } from '@/components/FiltersBar/FiltersBar.constants';
+import './FiltersBar.style.scss';
 
 export const FiltersBar = () => {
   const dispatch = useAppDispatch();
   const [disabled, setDisabled] = useState<boolean>(true);
+  const [selectArrow, setSelectArrow] = useState(false);
+  const [multiSelectArrow, setMultiSelectArrow] = useState(false);
   const {
     genres,
     validationErrors,
@@ -43,9 +29,6 @@ export const FiltersBar = () => {
     'vote_average.gte': voteGte,
     'vote_average.lte': voteLte,
   } = useAppSelector(state => state.filters);
-
-  const [selectArrow, setSelectArrow] = useState(false);
-  const [multiSelectArrow, setMultiSelectArrow] = useState(false);
 
   const handleDisableButton = useCallback(() => {
     if(with_genres.length > 0
@@ -93,10 +76,12 @@ export const FiltersBar = () => {
       <Grid align='flex-end'>
         <Grid.Col span={3.6}>
           <CustomMultiSelect
+            // data={[...genres, { id: Number('sdfs'), name: 'TEST'}]}
             data={genres}
             label='Genres'
             placeholder='Select genre'
             value={with_genres}
+            error={validationErrors.genreError}
             rightSection={<IconChevronDown style={{ width: rem(16), height: rem(16) }} transform={multiSelectArrow ? 'rotate(180)' : undefined} />}
             onChange={handleChangeGenres}
             onDropdownOpen={() => setMultiSelectArrow(true)}
@@ -152,7 +137,8 @@ export const FiltersBar = () => {
             label='Sort by'
             withCheckIcon={false}
             rightSection={<IconChevronDown style={{ width: rem(16), height: rem(16) }} transform={selectArrow ? 'rotate(180)' : undefined} />}
-            data={sortParams}
+            // data={[{ value: 'dsfds', label: 'TEST' }, ...filterSortParams]}
+            data={filterSortParams}
             value={sort_by}
             error={validationErrors.sortError}
             onChange={handleChangeSort}

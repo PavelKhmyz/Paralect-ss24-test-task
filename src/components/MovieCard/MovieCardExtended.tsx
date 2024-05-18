@@ -10,10 +10,9 @@ import { RatingModal } from '@/components/RatingModal/RatingModal';
 import { removeRating, setRating } from '@/app/(movies)/rated-movies/RatedMovies.slice';
 import { useEffect } from 'react';
 import { getGenres } from '@/components/FiltersBar/Filters.slice';
-import './MovieCard.style.scss';
 import { IMovieDetails } from '@/app/api/movie-details/[id]/route';
-
-const imageUrl = 'https://image.tmdb.org/t/p/';
+import { IMovie } from '@/app/api/movies/route';
+import './MovieCard.style.scss';
 
 interface ICardProps {
   movie: IMovieDetails;
@@ -22,7 +21,6 @@ interface ICardProps {
 export const MovieCardExtended = ({ movie }: ICardProps) => {
   const dispatch = useAppDispatch();
   const { userRating } = useAppSelector(state => state.rated);
-  const { genres } = useAppSelector(state => state.filters);
   const [opened, { open, close }] = useDisclosure(false);
   const releaseYear = new Date(movie.release_date).getFullYear();
   const movieGenre = movie.genres.map(genre => genre.name);
@@ -32,7 +30,18 @@ export const MovieCardExtended = ({ movie }: ICardProps) => {
   }, [dispatch]);
 
   const handleChangeRating = (value: number) => {
-    dispatch(setRating({ id: String(movie.id), rating: value, movie }));
+    const movieData: IMovie = {
+      id: movie.id,
+      title: movie.title,
+      original_title: movie.original_title,
+      poster_path: movie.poster_path,
+      release_date: movie.release_date,
+      vote_average: movie.vote_average,
+      vote_count: movie.vote_count,
+      genre_ids: movie.genres.map(genre => genre.id),
+    };
+
+    dispatch(setRating({ id: String(movie.id), rating: value, movie: movieData }));
   };
 
   const handleResetRating = () => {
@@ -47,7 +56,7 @@ export const MovieCardExtended = ({ movie }: ICardProps) => {
       >
         <Link href={`/movie/${movie.id}`} className='movie-card-link'>
           {movie.poster_path
-            ? <Image w={250} src={`${imageUrl}w300${movie['poster_path']}`} alt='poster'/>
+            ? <Image w={250} src={`${process.env.NEXT_PUBLIC_TMDB_IMG_BASE_URL}w300${movie['poster_path']}`} alt='poster'/>
             : <div className='movie-card-no-image'><NextImage src={NoPoster} alt='no-poster'/></div>
           }
           <Flex direction='column'>

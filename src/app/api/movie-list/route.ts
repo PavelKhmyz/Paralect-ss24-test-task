@@ -1,7 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { serverMoviesRepository } from '@/app/api/MovieRepository';
-import { paramsValidator } from '@/lib/urlParamsValidator';
+import { serverMoviesRepository } from '@/lib/MovieRepository';
+import { paramsValidator } from '@/lib/paramsValidator';
 import { genresValidator } from '@/lib/validators';
+import { removeFalsyElement } from '@/lib/removeFalsyElements';
+
+interface IGetGenres {
+  language: string;
+}
 
 export interface IGenre {
   id: number;
@@ -15,21 +20,21 @@ export interface IGenres {
 export const GET = async (request: NextRequest) => {
   const { searchParams } = new URL(request.url);
 
-  const result = paramsValidator(Object.fromEntries(searchParams), genresValidator);
+  const validationResult = paramsValidator<IGetGenres>(Object.fromEntries(searchParams), genresValidator);
 
-  if(result.success) {
-    const validatedSearchParams = new URLSearchParams(result.data);
+  if(validationResult.success && validationResult.data) {
+    const validatedSearchParams = new URLSearchParams(removeFalsyElement(validationResult.data));
 
     try {
-      const response = await serverMoviesRepository.getGenres(`/genre/movie/list?${validatedSearchParams}`);
+      const response = await serverMoviesRepository.GET<IGenres>(`/genre/movie/list?${validatedSearchParams}`);
 
       return NextResponse.json(response);
     } catch (error) {
-      return new NextResponse( 'Fetch TMDB is failed' , {status: 502});
+      return NextResponse.json( 'Fetch TMDB is failed' , {status: 502});
     }
-  } else {
-    return NextResponse.json({ error: result.errors }, {
-      status: 400,
-    });
   }
+
+  return NextResponse.json('Validation is fail', {
+    status: 400,
+  });
 };

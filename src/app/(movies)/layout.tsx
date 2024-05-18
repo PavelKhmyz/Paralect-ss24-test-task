@@ -20,25 +20,21 @@ export default function Layout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body>
-        <AppShell
-          navbar={{
-            width: '280px',
-            breakpoint: 'sm',
-          }}
-        >
-          <AppShellNavbar
-            className='nav-bar'
-            withBorder={false}
-          >
-            <NavigationBar />
-          </AppShellNavbar>
-          <AppShellMain>
-            {children}
-          </AppShellMain>
-        </AppShell>
-      </body>
-    </html>
+    <AppShell
+      navbar={{
+        width: '280px',
+        breakpoint: 'sm',
+      }}
+    >
+      <AppShellNavbar
+        className='nav-bar'
+        withBorder={false}
+      >
+        <NavigationBar />
+      </AppShellNavbar>
+      <AppShellMain>
+        {children}
+      </AppShellMain>
+    </AppShell>
   );
 }

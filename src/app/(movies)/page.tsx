@@ -8,13 +8,12 @@ import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import { getMovies, IGetMovies } from '@/app/(movies)/Movies.slice';
 import { PaginationBar } from '@/components/PaginationBar/PaginationBar';
 import { changeFiltersError, getGenres } from '@/components/FiltersBar/Filters.slice';
-import { removeFalsyElement } from '@/lib/removeFalsyElements';
-import { paramsValidator } from '@/lib/urlParamsValidator';
+import { paramsValidator } from '@/lib/paramsValidator';
 import { moviesValidator } from '@/lib/validators';
 import { getAllRatedMovies } from '@/app/(movies)/rated-movies/RatedMovies.slice';
-import './Movies.style.scss';
 import NextImage from 'next/image';
 import MoviesNotFound from 'public/MoviesNotFound.svg';
+import './Movies.style.scss';
 
 
 const Movies = () => {
@@ -25,7 +24,6 @@ const Movies = () => {
     primary_release_year,
     sort_by,
     page,
-    language,
     'vote_average.gte': voteGte,
     'vote_average.lte': voteLte,
   } = useAppSelector(state => state.filters);
@@ -34,38 +32,53 @@ const Movies = () => {
     const data = {
       with_genres,
       primary_release_year: primary_release_year ? primary_release_year.getFullYear() : null,
-      language,
       page,
       sort_by,
       'vote_average.gte': voteGte,
       'vote_average.lte': voteLte,
     };
 
-    const result = paramsValidator(removeFalsyElement(data), moviesValidator);
+    const result = paramsValidator<IGetMovies>(data, moviesValidator);
+
+    const validationErrors = {
+      genreError: result.errors?.with_genres ? result.errors.with_genres : '',
+      yearError: result.errors?.primary_release_year ? result.errors.primary_release_year : '',
+      sortError: result.errors?.sort_by ? result.errors.sort_by : '',
+      ratingError: result.errors?.['vote_average.gte']
+        ? result.errors?.['vote_average.gte']
+        : result.errors?.['vote_average.lte']
+          ? result.errors?.['vote_average.lte']
+          : '',
+    };
+
+    dispatch(changeFiltersError(validationErrors));
 
     if(result.success) {
       return result.data;
     }
+  }, [dispatch, page, primary_release_year, sort_by, voteGte, voteLte, with_genres]);
 
-    if(!result.success) {
-      const validationErrors = {
-        genreError: result.errors?.with_genres ? result.errors.with_genres : '',
-        yearError: result.errors?.primary_release_year ? result.errors.primary_release_year : '',
-        sortError: result.errors?.sort_by ? result.errors.sort_by : '',
-        ratingError: result.errors?.['vote_average.gte'] ? result.errors?.['vote_average.gte'] : ''
-          || result.errors?.['vote_average.lte'] ? result.errors?.['vote_average.lte'] : '',
-      };
 
-      dispatch(changeFiltersError(validationErrors));
-    }
-  }, [dispatch, language, page, primary_release_year, sort_by, voteGte, voteLte, with_genres]);
+  // useEffect(() => {
+  //   const data = {
+  //     with_genres,
+  //     primary_release_year: primary_release_year ? primary_release_year.getFullYear() : null,
+  //     page,
+  //     sort_by,
+  //     'vote_average.gte': voteGte,
+  //     'vote_average.lte': voteLte,
+  //   };
+  //
+  //   dispatch(getMovies(removeFalsyElement(data)));
+  // }, [dispatch, page, primary_release_year, sort_by, voteGte, voteLte, with_genres]);
+
 
   useEffect(() => {
     const validatedParams = validateSearchParams();
-    if(validatedParams) {
-      dispatch(getMovies((validatedParams as IGetMovies)));
-    }
 
+    if(validatedParams) {
+      dispatch(getMovies(validatedParams));
+    }
   }, [dispatch, validateSearchParams]);
 
   useEffect(() => {
