@@ -1,0 +1,135 @@
+@use 'app/variables' as v;
+
+.mantine-Grid-root {
+  margin-bottom: 24px;
+}
+
+.mantine-InputBase-input, .mantine-YearPickerInput-input, .mantine-NumberInput-input, .mantine-Select-input {
+  border-radius: 8px;
+  margin-top: 8px;
+  height: 42px;
+  line-height: 20px;
+  overflow: hidden;
+
+  &[aria-expanded="true"] + .mantine-YearPickerInput-section {
+    svg {
+      transform: rotate(180deg);
+      stroke: v.$purple500;
+    }
+  }
+
+  &[aria-expanded="true"] {
+    border-color: v.$purple500;
+  }
+
+  &:focus {
+    border-color: v.$purple500;
+  }
+
+  &:focus + .mantine-NumberInput-section {
+    svg {
+      stroke: v.$purple500;
+    }
+  }
+
+  &:focus + .mantine-InputBase-section {
+    svg {
+      stroke: v.$purple500;
+    }
+  }
+
+  &:focus + .mantine-YearPickerInput-section {
+    svg {
+      stroke: v.$purple500;
+    }
+  }
+
+  &:focus + .mantine-Select-section {
+    svg {
+      stroke: v.$purple500;
+    }
+  }
+}
+
+.mantine-InputBase-section, .mantine-YearPickerInput-section, .mantine-NumberInput-section, .mantine-Select-section {
+  svg {
+    stroke: v.$grey500;
+  }
+}
+
+.mantine-InputBase-label, .mantine-YearPickerInput-label, .mantine-NumberInput-label, .mantine-Select-label {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.mantine-Select-option, .mantine-Combobox-option, .mantine-PickerControl-pickerControl {
+  border-radius: 8px;
+
+  &:hover{
+    background-color: v.$purple100;
+  }
+
+  &:active {
+    background-color: v.$purple500;
+    color: white;
+
+    span {
+      color: white;
+    }
+  }
+
+  &[data-combobox-active="true"] {
+    background-color: v.$purple500;
+    color: white;
+
+    span {
+      color: white;
+    }
+  }
+
+  &[data-selected="true"] {
+    background-color: v.$purple500;
+  }
+}
+
+.mantine-YearPickerInput-calendarHeader {
+  .mantine-YearPickerInput-calendarHeaderControl, .mantine-YearPickerInput-calendarHeaderLevel {
+    border-radius: 8px;
+
+    &:hover {
+      background-color: v.$purple100;
+    }
+
+    &:active {
+      background-color: v.$purple500;
+      color: white;
+
+      svg {
+        stroke: white;
+      }
+    }
+  }
+}
+
+.mantine-Select-dropdown, .mantine-Combobox-dropdown, .mantine-Popover-dropdown {
+  border-radius: 8px;
+}
+
+.reset-button {
+  font-size: 14px;
+  font-weight: 500;
+  height: 42px;
+  color: v.$purple500;
+
+  &:hover {
+    color: v.$purple400;
+  }
+
+  &:active {
+  color: v.$purple600;
+  }
+
+  &:disabled {
+    color: v.$grey600;
+  }
+}

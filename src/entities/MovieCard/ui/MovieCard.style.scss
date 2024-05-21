@@ -1,0 +1,104 @@
+@use 'app/variables' as v;
+
+.movie-card-wrapper {
+  border-radius: 12px;
+  padding: 24px;
+  background: white;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  .movie-card-link {
+    display: flex;
+    gap: 16px;
+    flex-direction: row;
+
+    &:hover .movie-card-title {
+      color: v.$purple400;
+    }
+
+    &:active .movie-card-title {
+      color: v.$purple600;
+    }
+
+    .movie-card-no-image {
+      width: 119px;
+      background-color: v.$grey200;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .movie-card-title {
+      font-size: 20px;
+      margin: 0;
+      line-height: 24.2px;
+      color: v.$purple500;
+    }
+
+    .movie-card-year {
+      margin-top: 8px;
+      color: v.$grey600;
+    }
+
+    .movie-card-rating {
+      margin-top: 8px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      margin-bottom: 62px;
+
+      svg {
+        width: 28px;
+        height: 28px;
+      }
+
+      span {
+        &:nth-child(even) {
+          font-weight: 600;
+          margin-left: 4px;
+          vertical-align: center;
+        }
+
+        &:nth-child(odd) {
+          color: v.$grey600;
+          margin-left: 8px;
+        }
+      }
+    }
+
+    .movie-card-genres {
+      margin-top: 12px;
+      margin-bottom: 0;
+
+      span {
+        &:nth-child(odd) {
+          color: v.$grey600;
+          margin-right: 8px;
+        }
+      }
+    }
+  }
+
+  .movie-card-rate-button {
+    display: flex;
+    align-items: center;
+
+    &:hover svg{
+      fill: v.$purple400;
+    }
+
+    &:active svg {
+      fill: v.$purple600;
+    }
+
+    svg {
+      width: 28px;
+      height: 28px;
+    }
+
+    span {
+      font-weight: 600;
+      margin-left: 4px;
+    }
+  }
+}

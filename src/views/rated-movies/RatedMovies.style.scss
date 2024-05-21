@@ -1,0 +1,118 @@
+@use '../../../app/variables' as v;
+
+.rated-movies-wrapper {
+  min-height: 100vh;
+  background-color: v.$grey100;
+  padding: 40px 90px 82px 90px;
+  gap: 40px;
+
+  h1 {
+    margin: 0;
+    height: 48px;
+  }
+}
+
+.empty-rated-movies-wrapper {
+  min-height: 100vh;
+  background-color: v.$grey100;
+
+  h3 {
+    font-size: 20px;
+    margin-top: 16px;
+    margin-bottom: 16px;
+  }
+
+  .mantine-Button-root {
+    border-radius: 8px;
+    background-color: v.$purple500;
+    padding: 10px 20px 10px 20px;
+
+    span {
+      color: white;
+    }
+
+    &:hover {
+      background-color: v.$purple400;
+    }
+
+    &:active {
+      background-color: v.$purple600;
+    }
+  }
+}
+
+.mantine-Input-section {
+  &[data-position='right'] {
+    width: 112px;
+    padding: 12px;
+  }
+
+  &[data-position='left'] {
+    padding-left: 12px
+  }
+
+  svg {
+    stroke: v.$grey500;
+    width: 1em;
+  }
+
+  .mantine-Button-root{
+    background-color: v.$purple500;
+    border-radius: 8px;
+    width: 88px;
+    height: 32px;
+
+    span {
+      color: white;
+    }
+
+    &:hover {
+      background-color: v.$purple400;
+    }
+
+    &:active {
+      background-color: v.$purple600;
+    }
+  }
+}
+
+.mantine-Input-input {
+  height: 48px;
+  border-radius: 8px;
+  border-color: v.$grey200;
+  font-size: 14px;
+  padding-left: 42px;
+
+  &:focus {
+    border-color: v.$purple500;
+  }
+}
+
+.mantine-Pagination-root {
+  display: flex;
+  justify-content: center;
+
+  .mantine-Pagination-control {
+    background-color: white;
+    border-color: v.$grey200;
+
+    &:hover {
+      background-color: v.$purple100;
+    }
+
+    &:active {
+      background-color: v.$purple500;
+      color: white;
+
+      svg {
+        path {
+          fill: white;
+        }
+      }
+    }
+
+    &[data-active='true'] {
+      background-color: v.$purple500;
+    }
+  }
+}
