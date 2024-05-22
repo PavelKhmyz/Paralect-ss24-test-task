@@ -6,7 +6,7 @@ import { changePage, getAllRatedMovies, searchMovie } from '@/features/rate-movi
 import { EmptyState } from '@/shared/ui';
 import { MoviesGrid, PaginationBar } from '@/widgets';
 import { getGenres } from '@/features/filter-movies';
-import './RatedMovies.style.scss';
+import classes from './RatedMovies.module.scss';
 
 export const RatedMovies = () => {
   const dispatch = useAppDispatch();
@@ -32,19 +32,25 @@ export const RatedMovies = () => {
 
   return (
     Object.keys(ratedMovies).length
-      ? <Flex className='rated-movies-wrapper' direction='column'>
+      ? <Flex className={classes.ratedMoviesWrapper} direction='column'>
         <Grid align='center'>
-          <Grid.Col span={6}><h1>Rated movies</h1></Grid.Col>
-          <Grid.Col span={6}>
+          <Grid.Col span={{ lg:6, md: 12 }}><h1>Rated movies</h1></Grid.Col>
+          <Grid.Col span={{ lg:6, md: 12 }}>
             <SearchInput
               placeholder='Search movie title'
               onSubmit={handleSearch}
+              classNames={{
+                input: classes.searchInput,
+                section: classes.searchSection,
+                button: classes.searchButton,
+                arrowIcon: classes.arrowIcon,
+              }}
             />
           </Grid.Col>
         </Grid>
         <MoviesGrid movies={searchedMovies} />
         <PaginationBar page={page} totalPages={totalPages} onChange={handleChangePage} />
       </Flex>
-      : <EmptyState />
+      : <EmptyState classNames={{ wrapper: classes.emptyRatedMoviesWrapper, button: classes.emptyStateButton }}/>
   );
 };

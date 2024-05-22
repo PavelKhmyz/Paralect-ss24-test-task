@@ -1,22 +1,4 @@
-@use '../../../app/variables' as v;
-
-.movies-wrapper {
-  min-height: 100vh;
-  background-color: v.$grey100;
-  padding: 40px 90px 82px 90px;
-
-  h1 {
-    margin-top: 0;
-    margin-bottom: 42px;
-  }
-
-  .mantine-Flex-root {
-    h3 {
-      font-size: 20px;
-      margin-top: 16px;
-    }
-  }
-}
+@use 'app/variable.module.scss' as v;
 
 .mantine-Pagination-root {
   display: flex;

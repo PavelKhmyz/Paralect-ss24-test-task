@@ -1,19 +1,17 @@
 'use client';
 
 import { Flex } from '@mantine/core';
-import NextImage from 'next/image';
-import { Image } from '@mantine/core';
-import { IconStarFilled } from '@tabler/icons-react';
 import { useAppDispatch, useAppSelector } from '@/shared/lib/hooks/redux';
 import Link from 'next/link';
-import NoPoster from 'public/NoPoster.svg';
 import { useEffect } from 'react';
 import { getGenres } from '@/features/filter-movies/lib/Filters.slice';
 import { usePathname } from 'next/navigation';
 import { IGenre } from '@/shared/types';
-import { currencyParses, dateParser, durationParser, voteParser } from '@/entities/MovieCard';
+import { currencyParses, dateParser, durationParser } from '@/entities/MovieCard';
 import { MovieTableElement } from './MovieTableElement';
-import './MovieCard.style.scss';
+import { ImageComponent } from '@/shared/ui';
+import { RatingStar } from '@/entities/MovieCard/ui/RatingStar';
+import classes from './MovieCard.module.scss';
 
 export interface IMovieExtended {
   id: number;
@@ -56,29 +54,42 @@ export const MovieCard = ({ movie, children, extended=false }: IMovieCard) => {
 
   return (
     <Flex
-      className='movie-card-wrapper'
+      className={classes.movieCardWrapper}
       direction='row'
     >
-      <Link href={pathName === '/' ? `movies/${movie.id}` : `${pathName}/${movie.id}`} className='movie-card-link'>
-        {movie.poster_path
-          ? <Image w={119} src={`${process.env.NEXT_PUBLIC_TMDB_IMG_BASE_URL}w200${movie['poster_path']}`} alt='poster'/>
-          : <div className='movie-card-no-image'><NextImage src={NoPoster} alt='no-poster'/></div>
-        }
+      <Link href={pathName === '/' ? `movies/${movie.id}` : `${pathName}/${movie.id}`} className={classes.movieCardLink}>
+        <ImageComponent posterPath={movie.poster_path} width={119}/>
         <Flex direction='column'>
-          <h2 className='movie-card-title'>{movie.title}</h2>
-          <span className='movie-card-year'>{releaseYear ? releaseYear : ''}</span>
-          <p className='movie-card-rating'>
-            <IconStarFilled fill={'#FAB005'}/>
-            <span>{movie.vote_average || 0}</span>
-            <span>{voteParser(movie.vote_count)}</span>
-          </p>
+          <h2 className={classes.movieCardTitle}>{movie.title}</h2>
+          <span className={classes.movieCardYear}>{releaseYear ? releaseYear : ''}</span>
+          <RatingStar voteAverage={movie.vote_average} voteCount={movie.vote_count} className={classes.movieCardRating}/>
           <table>
             <tbody>
-              {extended && <MovieTableElement title='Duration' value={durationParser(movie.runtime)} />}
-              {extended && <MovieTableElement title='Premiere' value={dateParser(movie.release_date)} />}
-              {extended && <MovieTableElement title='Budget' value={currencyParses(movie.budget)} />}
-              {extended && <MovieTableElement title='Gross worldwide' value={currencyParses(movie.revenue)} />}
-              {movieGenre && <MovieTableElement title='Genres' value={movieGenre.map(el => el?.name).join(', ')}/>}
+              {extended && <MovieTableElement
+                title='Duration'
+                value={durationParser(movie.runtime)}
+                className={classes.movieCardGenres}
+              />}
+              {extended && <MovieTableElement
+                title='Premiere'
+                value={dateParser(movie.release_date)}
+                className={classes.movieCardGenres}
+              />}
+              {extended && <MovieTableElement
+                title='Budget'
+                value={currencyParses(movie.budget)}
+                className={classes.movieCardGenres}
+              />}
+              {extended && <MovieTableElement
+                title='Gross worldwide'
+                value={currencyParses(movie.revenue)}
+                className={classes.movieCardGenres}
+              />}
+              {movieGenre && <MovieTableElement
+                title='Genres'
+                value={movieGenre.map(el => el?.name).join(', ')}
+                className={classes.movieCardGenres}
+              />}
             </tbody>
           </table>
         </Flex>

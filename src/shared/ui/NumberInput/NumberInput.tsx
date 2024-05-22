@@ -9,6 +9,11 @@ interface INumberInput {
   error: string;
   onChange: (value: string | number) => void;
   label?: string;
+  classNames?: {
+    input: string;
+    section: string;
+    label: string;
+  }
 }
 
 export const NumberInput = ({
@@ -19,6 +24,7 @@ export const NumberInput = ({
   value,
   error,
   onChange,
+  classNames,
 }: INumberInput) => {
   return (
     <NumInput
@@ -30,6 +36,7 @@ export const NumberInput = ({
       value={value}
       error={error}
       onChange={onChange}
+      classNames={classNames}
     />
   );
 };

@@ -5,7 +5,7 @@ import { getAllRatedMovies } from '@/features/rate-movies';
 import { useAppDispatch, useAppSelector } from '@/shared/lib';
 import { MoviesGrid, PaginationBar } from '@/widgets';
 import { changePage } from '@/features/filter-movies';
-import './Movies.style.scss';
+import classes from './Movies.module.scss';
 
 export const Movies = () => {
   const dispatch = useAppDispatch();
@@ -25,7 +25,7 @@ export const Movies = () => {
 
   return (
     <Flex
-      className='movies-wrapper'
+      className={classes.moviesWrapper}
       direction='column'
     >
       <h1>Movies</h1>

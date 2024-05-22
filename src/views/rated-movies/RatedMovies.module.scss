@@ -1,0 +1,141 @@
+@use 'app/variable.module' as v;
+
+.ratedMoviesWrapper {
+  min-height: 100vh;
+  background-color: v.$grey100;
+  padding: 40px 90px 82px 90px;
+  gap: 40px;
+
+  h1 {
+    margin: 0;
+    height: 48px;
+  }
+
+  @media (max-width: v.$breakpoint-xs) {
+    padding: 30px 20px 82px 20px;
+
+    h1 {
+      text-align: center;
+      font-size: 25px;
+    }
+  }
+}
+
+.emptyRatedMoviesWrapper {
+  min-height: 100vh;
+  background-color: v.$grey100;
+
+  h3 {
+    font-size: 20px;
+    margin-top: 16px;
+    margin-bottom: 16px;
+  }
+}
+
+.emptyStateButton {
+  border-radius: 8px;
+  background-color: v.$purple500;
+  padding: 10px 20px 10px 20px;
+
+  span {
+    color: white;
+  }
+
+  &:hover {
+    background-color: v.$purple400;
+  }
+
+  &:active {
+    background-color: v.$purple600;
+  }
+}
+
+.searchSection {
+  &[data-position='right'] {
+    width: 112px;
+    padding: 12px;
+
+    @media (max-width: v.$breakpoint-xs) {
+      width: 40px;
+      padding: 2px;
+    }
+  }
+
+  &[data-position='left'] {
+    padding-left: 12px
+  }
+
+  svg {
+    stroke: v.$grey500;
+    width: 1em;
+  }
+}
+
+.searchButton{
+  background-color: v.$purple500;
+  border-radius: 8px;
+  width: 88px;
+  height: 32px;
+
+  span {
+    color: white;
+  }
+
+  &:hover {
+    background-color: v.$purple400;
+  }
+
+  &:active {
+    background-color: v.$purple600;
+  }
+
+  @media (max-width: v.$breakpoint-xs) {
+    display: none;
+  }
+}
+
+.searchInput {
+  height: 48px;
+  border-radius: 8px;
+  border-color: v.$grey200;
+  font-size: 14px;
+  padding-left: 42px;
+
+  &:focus {
+    border-color: v.$purple500;
+  }
+
+  @media (max-width: v.$breakpoint-xs) {
+    height: 30px;
+  }
+}
+
+.arrowIcon {
+  height: 25px;
+  width: 25px;
+  border-radius: 8px;
+  padding: 0;
+  background-color: v.$purple500;
+  display: none;
+
+  span {
+    span {
+      svg {
+        stroke: white;
+      }
+    }
+
+  }
+
+  &:hover {
+    background-color: v.$purple400;
+  }
+
+  &:active {
+    background-color: v.$purple600;
+  }
+
+  @media (max-width: v.$breakpoint-xs) {
+    display: block;
+  }
+}

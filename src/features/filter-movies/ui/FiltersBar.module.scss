@@ -1,17 +1,33 @@
-@use 'app/variables' as v;
+@use 'app/variable.module' as v;
 
-.mantine-Grid-root {
+.filtersWrapper {
   margin-bottom: 24px;
 }
 
-.mantine-InputBase-input, .mantine-YearPickerInput-input, .mantine-NumberInput-input, .mantine-Select-input {
+.filtersSortWrapper {
+  margin-bottom: 24px;
+
+  @media (max-width: v.$breakpoint-lg) {
+    display: none;
+  }
+}
+
+.filtersHidenSort {
+  display: none;
+
+  @media (max-width: v.$breakpoint-lg) {
+    display: flex;
+  }
+}
+
+.filtersInput {
   border-radius: 8px;
   margin-top: 8px;
   height: 42px;
   line-height: 20px;
   overflow: hidden;
 
-  &[aria-expanded="true"] + .mantine-YearPickerInput-section {
+  &[aria-expanded="true"] + .section {
     svg {
       transform: rotate(180deg);
       stroke: v.$purple500;
@@ -51,18 +67,18 @@
   }
 }
 
-.mantine-InputBase-section, .mantine-YearPickerInput-section, .mantine-NumberInput-section, .mantine-Select-section {
+.filtersSection {
   svg {
     stroke: v.$grey500;
   }
 }
 
-.mantine-InputBase-label, .mantine-YearPickerInput-label, .mantine-NumberInput-label, .mantine-Select-label {
+.filtersLabel {
   font-size: 16px;
   font-weight: 700;
 }
 
-.mantine-Select-option, .mantine-Combobox-option, .mantine-PickerControl-pickerControl {
+.filtersOptions {
   border-radius: 8px;
 
   &:hover{
@@ -92,8 +108,8 @@
   }
 }
 
-.mantine-YearPickerInput-calendarHeader {
-  .mantine-YearPickerInput-calendarHeaderControl, .mantine-YearPickerInput-calendarHeaderLevel {
+.filtersYearHeader {
+  .calendarHeaderControl, .calendarHeaderLevel {
     border-radius: 8px;
 
     &:hover {
@@ -104,18 +120,35 @@
       background-color: v.$purple500;
       color: white;
 
-      svg {
+      .calendarHeaderControlIcon {
         stroke: white;
       }
     }
   }
 }
 
-.mantine-Select-dropdown, .mantine-Combobox-dropdown, .mantine-Popover-dropdown {
+.filtersYearListControl {
+  border-radius: 8px;
+
+  &[data-selected="true"] {
+    background-color: v.$purple500;
+  }
+
+  &:hover {
+    background-color: v.$purple100;
+  }
+
+  &:active {
+    background-color: v.$purple500;
+    color: white;
+  }
+}
+
+.filtersDropdown {
   border-radius: 8px;
 }
 
-.reset-button {
+.resetButton {
   font-size: 14px;
   font-weight: 500;
   height: 42px;

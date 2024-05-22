@@ -5,6 +5,7 @@ import { IRatingModal, removeRating, setRating } from '@/features/rate-movies';
 import { useDisclosure } from '@mantine/hooks';
 import { IMovieExtended } from '@/entities/MovieCard/ui/MovieCard';
 import { IMovie } from '@/shared/types';
+import classes from './RatingButton.module.scss';
 
 interface IRatingButton {
   movie: IMovieExtended;
@@ -41,7 +42,7 @@ export const RatingButton = ({ movie, modal }: IRatingButton) => {
 
   return (
     <>
-      <UnstyledButton onClick={open} className='movie-card-rate-button'>
+      <UnstyledButton onClick={open} className={classes.movieCardRateButton}>
         <IconStarFilled fill={userRating?.[movie.id] ? '#9854F6' : '#D5D6DC'}/>
         {userRating?.[movie.id] > 0 && <span>{userRating[movie.id]}</span>}
       </UnstyledButton>

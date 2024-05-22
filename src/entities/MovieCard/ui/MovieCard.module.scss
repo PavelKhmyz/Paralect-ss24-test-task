@@ -1,0 +1,135 @@
+@use 'app/variable.module.scss' as v;
+
+.movieCardWrapper {
+  border-radius: 12px;
+  padding: 24px;
+  height: 100%;
+  background: white;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  .movieCardLink {
+    display: flex;
+    gap: 16px;
+    flex-direction: row;
+    padding-right: 8px;
+
+    &:hover .movieCardTitle {
+      color: v.$purple400;
+    }
+
+    &:active .movieCardTitle {
+      color: v.$purple600;
+    }
+
+    .movieCardTitle {
+      font-size: 20px;
+      margin: 0;
+      line-height: 24.2px;
+      color: v.$purple500;
+    }
+
+    .movieCardYear {
+      margin-top: 8px;
+      color: v.$grey600;
+    }
+
+    .movieCardRating {
+      margin-top: 8px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      margin-bottom: 62px;
+
+      svg {
+        width: 28px;
+        height: 28px;
+      }
+
+      span {
+        &:nth-child(even) {
+          font-weight: 600;
+          margin-left: 4px;
+          vertical-align: center;
+        }
+
+        &:nth-child(odd) {
+          color: v.$grey600;
+          margin-left: 8px;
+        }
+      }
+    }
+
+    .movieCardGenres {
+      margin-top: 12px;
+      margin-bottom: 0;
+
+      td {
+        &:nth-child(1) {
+          color: v.$grey600;
+          padding-right: 8px;
+        }
+      }
+    }
+  }
+
+  @media (max-width: v.$breakpoint-md) {
+    position: relative;
+
+    .movieCardLink {
+      width: 100%;
+      flex-direction: column;
+      align-items: center;
+      padding: 0;
+
+      .movieCardTitle {
+        text-align: center;
+      }
+
+      .movieCardYear {
+        text-align: center;
+      }
+
+      .movieCardRating {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+      }
+
+      .movieCardGenres {
+        td {
+          &:nth-child(2) {
+            text-align: center;
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: v.$breakpoint-xs) {
+    padding: 15px;
+
+    .movieCardLink {
+      .movieCardTitle {
+        font-size: 16px;
+      }
+
+      .movieCardYear {
+        font-size: 14px;
+      }
+
+      .movieCardRating {
+        font-size: 14px;
+
+        svg {
+          width: 22px;
+          height: 22px;
+        }
+      }
+
+      .movieCardGenres {
+        font-size: 14px;
+      }
+    }
+  }
+}

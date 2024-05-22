@@ -3,17 +3,24 @@ import NotRated from 'public/NotRated.svg';
 import { Button, Flex } from '@mantine/core';
 import Link from 'next/link';
 
-export const EmptyState = () => {
+interface IEmptyState {
+  classNames: {
+    wrapper: string;
+    button: string;
+  }
+}
+
+export const EmptyState = ({ classNames }: IEmptyState) => {
   return (
     <Flex
-      className='empty-rated-movies-wrapper'
+      className={classNames.wrapper}
       direction='column'
       justify='center'
       align='center'
     >
       <NextImage src={NotRated} alt='No Rated Movies' />
       <h3>You haven`t rated any films yet</h3>
-      <Button component={Link} href='/'>Find movies</Button>
+      <Button className={classNames.button} component={Link} href='/'>Find movies</Button>
     </Flex>
   );
 };

@@ -3,6 +3,7 @@
 import { Combobox, Group, Input, InputBase, useCombobox, ScrollArea, rem } from '@mantine/core';
 import { useState } from 'react';
 import { IconChevronDown } from '@tabler/icons-react';
+import colors from 'app/variable.module.scss';
 
 interface IMultiSelectData {
   id: number | string;
@@ -17,6 +18,13 @@ interface IMultiSelect {
   label?: string;
   placeholder?: string;
   error?: string;
+  classNames?: {
+    input: string;
+    section: string;
+    label: string;
+    option: string;
+    dropdown: string;
+  }
 }
 
 export const MultiSelect = ({
@@ -26,6 +34,7 @@ export const MultiSelect = ({
   placeholder,
   onChange,
   error,
+  classNames,
 }: IMultiSelect) => {
   const [chevronPosition, setChevronPosition] = useState(0);
   const combobox = useCombobox({
@@ -46,8 +55,8 @@ export const MultiSelect = ({
   };
 
   const options = data.map(genre => (
-    <Combobox.Option value={String(genre.id)} key={genre.id} active={value.includes(String(genre.id))}>
-      <Group gap="sm">
+    <Combobox.Option value={String(genre.id)} key={genre.id} active={value.includes(String(genre.id))} className={classNames?.option}>
+      <Group gap='sm'>
         <span>{genre.name}</span>
       </Group>
     </Combobox.Option>
@@ -62,23 +71,28 @@ export const MultiSelect = ({
 
   return (
     <Combobox store={combobox} onOptionSubmit={handleValueSelect} withinPortal={false}>
-      <label className='mantine-InputBase-label'>{label}</label>
+      <label className={classNames?.label}>{label}</label>
       <Combobox.DropdownTarget>
         <InputBase
           component='button'
           type='button'
           pointer
           rightSection={<IconChevronDown
-            style={{ width: rem(16), height: rem(16) }}
+            style={{
+              width: rem(16),
+              height: rem(16),
+              stroke: chevronPosition === 180 ? colors.purple500 : colors.grey500,
+            }}
             transform={`rotate(${chevronPosition})`} />}
           onClick={() => combobox.toggleDropdown()}
           rightSectionPointerEvents='none'
           error={error}
+          classNames={classNames}
         >
           {dataParser(value) || <Input.Placeholder>{placeholder}</Input.Placeholder>}
         </InputBase>
       </Combobox.DropdownTarget>
-      <Combobox.Dropdown>
+      <Combobox.Dropdown className={classNames?.dropdown}>
         <ScrollArea.Autosize type='scroll' mah={200} scrollbarSize={4}>
           {options}
         </ScrollArea.Autosize>

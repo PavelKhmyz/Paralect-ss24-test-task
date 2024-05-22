@@ -5,3 +5,5 @@ export * from './NumberInput/NumberInput';
 export * from './SearchInput/SearchInput';
 export * from './MoviesNotFound/MoviesNotFound';
 export * from './EmptyState/EmptyState';
+export * from './ImageComponent/ImageComponent';
+export * from './Loader/Loader';

@@ -1,0 +1,42 @@
+@use 'app/variable.module' as v;
+
+.navLink {
+    width: 232px;
+    height: 42px;
+    border-radius: 8px;
+    padding: 10px;
+
+    &:hover {
+        color: v.$purple400;
+    }
+}
+
+.navLinkActive {
+    background-color: v.$purple200;
+    color: v.$purple500;
+    font-weight: 700;
+    width: 232px;
+    height: 42px;
+    border-radius: 8px;
+    padding: 10px;
+
+    &:hover {
+        color: v.$purple400;
+    }
+}
+
+.logoLink {
+    margin-bottom: 70px;
+}
+
+.closeButton {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    display: none;
+    border-radius: 8px;
+
+    @media (max-width: v.$breakpoint-sm) {
+        display: flex;
+    }
+}

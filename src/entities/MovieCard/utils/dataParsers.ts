@@ -1,3 +1,6 @@
+const millionsDivider = 1000000;
+const thousandsDivider = 1000;
+
 export const currencyParses = (currency?: number) => {
   if(!currency) {
     return;
@@ -30,8 +33,8 @@ export const durationParser = (duration?: number) => {
 };
 
 export const voteParser = (voteCount: number) => {
-  const millions= (voteCount / 1000000);
-  const thousands = (voteCount / 1000);
+  const millions= (voteCount / millionsDivider);
+  const thousands = (voteCount / thousandsDivider);
 
   if(millions >= 1) {
     return `(${millions.toFixed(1)}M)`;

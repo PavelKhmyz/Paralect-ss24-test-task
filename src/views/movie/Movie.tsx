@@ -1,13 +1,14 @@
 import { notFound } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
-import { Flex, Loader, LoadingOverlay } from '@mantine/core';
+import { Flex } from '@mantine/core';
 import { clientMoviesRepository } from '@/shared/lib';
 import { IMovieDetails } from '@/shared/types';
 import { MovieDetails } from '@/entities/MovieDetails';
 import { MovieCard } from '@/entities/MovieCard';
 import { RatingButton, RatingModal } from '@/features/rate-movies';
 import { BreadCrumbs } from '@/widgets';
-import './Movie.style.scss';
+import classes from './Movie.module.scss';
+import { Loader } from '@/shared/ui';
 
 const navigateRegex = /(movie|rated-movie)/;
 
@@ -65,10 +66,10 @@ export const Movie = ({ params }: IMovie) => {
   return (
     <Flex
       direction='column'
-      className='movie-wrapper'
+      className={classes.movieWrapper}
     >
-      <LoadingOverlay visible={loading} loaderProps={{children: <Loader color="grape" type="bars" />}} />
-      <BreadCrumbs data={breadCrumbsData} />
+      <Loader loading={loading}/>
+      <BreadCrumbs data={breadCrumbsData} className={{ wrapper: classes.breadcrumbsWrapper, link: classes.breadcrumbLink }}/>
       {movie &&
         <>
           <MovieCard movie={movie} extended={true}>

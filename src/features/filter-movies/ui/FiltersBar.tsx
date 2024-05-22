@@ -9,13 +9,13 @@ import {
   changeSort,
   changeYear, getGenres,
   resetFilters,
-} from '@/features/filter-movies/lib/Filters.slice';
+} from '@/features/filter-movies';
 import { useCallback, useEffect, useState } from 'react';
 import { filterSortParams } from '@/features/filter-movies/lib/FiltersBar.constants';
 import { MultiSelect, SelectInput, YearInput, NumberInput } from '@/shared/ui';
 import { moviesValidator, paramsValidator } from '@/shared/lib';
 import { getMovies, IGetMovies } from '@/features/filter-movies/lib/Movies.slice';
-import './FiltersBar.style.scss';
+import classes from './FiltersBar.module.scss';
 
 export const FiltersBar = () => {
   const dispatch = useAppDispatch();
@@ -116,8 +116,8 @@ export const FiltersBar = () => {
 
   return (
     <>
-      <Grid align='flex-end'>
-        <Grid.Col span={3.6}>
+      <Grid align='flex-end' className={classes.filtersWrapper}>
+        <Grid.Col span={{ lg: 3.6, md: 6 }}>
           <MultiSelect
             label='Genres'
             placeholder='Select genre'
@@ -125,18 +125,32 @@ export const FiltersBar = () => {
             value={with_genres}
             error={validationErrors.genreError}
             onChange={handleChangeGenres}
+            classNames={{
+              input: classes.filtersInput,
+              section: classes.filtersSection,
+              label: classes.filtersLabel,
+              option: classes.filtersOptions,
+              dropdown: classes.filtersDropdown,
+            }}
           />
         </Grid.Col>
-        <Grid.Col span={3.6}>
+        <Grid.Col span={{ lg: 3.6, md: 6 }}>
           <YearInput
             label='Release year'
             placeholder='Select release year'
             value={primary_release_year}
             error={validationErrors.yearError}
             onChange={handleChangeReleaseYear}
+            classNames={{
+              input: classes.filtersInput,
+              section: classes.filtersSection,
+              label: classes.filtersLabel,
+              calendarHeader: classes.filtersYearHeader,
+              yearsListControl: classes.filtersYearListControl,
+            }}
           />
         </Grid.Col>
-        <Grid.Col span={1.8}>
+        <Grid.Col span={{ lg: 1.8, md: 2.5, sm: 4 }}>
           <NumberInput
             label='Rating'
             placeholder='From'
@@ -145,9 +159,14 @@ export const FiltersBar = () => {
             value={voteGte}
             error={validationErrors.ratingError}
             onChange={handleChangeRatingFromValue}
+            classNames={{
+              input: classes.filtersInput,
+              section: classes.filtersSection,
+              label: classes.filtersLabel,
+            }}
           />
         </Grid.Col>
-        <Grid.Col span={1.8}>
+        <Grid.Col span={{ lg: 1.8, md: 2.5, sm: 4 }}>
           <NumberInput
             placeholder='To'
             minValue={Number(voteGte)}
@@ -155,11 +174,32 @@ export const FiltersBar = () => {
             value={voteLte}
             error={validationErrors.ratingError}
             onChange={handleChangeRatingToValue}
+            classNames={{
+              input: classes.filtersInput,
+              section: classes.filtersSection,
+              label: classes.filtersLabel,
+            }}
           />
         </Grid.Col>
-        <Grid.Col span={1.2}>
+        <Grid.Col span={{ lg: 3.6, md: 5, sm: 5 }} className={classes.filtersHidenSort}>
+          <SelectInput
+            label='Sort by'
+            data={filterSortParams}
+            value={sort_by}
+            error={validationErrors.sortError}
+            onChange={handleChangeSort}
+            classNames={{
+              input: classes.filtersInput,
+              section: classes.filtersSection,
+              label: classes.filtersLabel,
+              option: classes.filtersOptions,
+              dropdown: classes.filtersDropdown,
+            }}
+          />
+        </Grid.Col>
+        <Grid.Col span={{ lg: 1.2, md: 2, sm: 4 }}>
           <UnstyledButton
-            className='reset-button'
+            className={classes.resetButton}
             onClick={handleResetFilters}
             disabled={disabled}
           >
@@ -167,14 +207,21 @@ export const FiltersBar = () => {
           </UnstyledButton>
         </Grid.Col>
       </Grid>
-      <Grid justify='flex-end'>
-        <Grid.Col span={3.6}>
+      <Grid justify='flex-end' className={classes.filtersSortWrapper} >
+        <Grid.Col span={{ lg: 3.6, md: 5 }}>
           <SelectInput
             label='Sort by'
             data={filterSortParams}
             value={sort_by}
             error={validationErrors.sortError}
             onChange={handleChangeSort}
+            classNames={{
+              input: classes.filtersInput,
+              section: classes.filtersSection,
+              label: classes.filtersLabel,
+              option: classes.filtersOptions,
+              dropdown: classes.filtersDropdown,
+            }}
           />
         </Grid.Col>
       </Grid>

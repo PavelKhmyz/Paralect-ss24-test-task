@@ -1,0 +1,42 @@
+@use 'app/variable.module' as v;
+
+.movieWrapper {
+  background: v.$grey100;
+  min-height: 100vh;
+  gap: 20px;
+  padding: 40px 180px;
+
+  @media (max-width: v.$breakpoint-lg) {
+    padding: 40px 40px;
+  }
+
+  @media (max-width: v.$breakpoint-sm) {
+    padding: 80px 40px;
+  }
+
+  @media (max-width: v.$breakpoint-xs) {
+    padding: 80px 20px;
+  }
+
+  .breadcrumbsWrapper {
+    @media (max-width: v.$breakpoint-sm) {
+      align-self: center;
+    }
+
+    @media (max-width: v.$breakpoint-xs) {
+      font-size: 12px;
+    }
+  }
+
+  .breadcrumbLink {
+    color: v.$purple500;
+
+    &:hover {
+      color: v.$purple400;
+    }
+
+    &:active {
+      color: v.$purple600;
+    }
+  }
+}

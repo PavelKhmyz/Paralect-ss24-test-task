@@ -1,8 +1,8 @@
 import { RatingButton, RatingModal } from '@/features/rate-movies';
-import { Grid, Loader, LoadingOverlay } from '@mantine/core';
+import { Grid } from '@mantine/core';
 import { MovieCard } from '@/entities/MovieCard';
 import { IMovie } from '@/shared/types';
-import { MoviesNotFound } from '@/shared/ui';
+import { Loader, MoviesNotFound } from '@/shared/ui';
 import React from 'react';
 import { useAppSelector } from '@/shared/lib';
 
@@ -14,7 +14,7 @@ export const MoviesGrid = ({ movies }: IMovieGrid) => {
   const { loading } = useAppSelector(state => state.movies);
 
   const movieCol = movies.map(movie => (
-    <Grid.Col span={6} key={movie.id}>
+    <Grid.Col span={{ xl: 6 }} key={movie.id}>
       <MovieCard movie={movie}>
         <RatingButton movie={movie} modal={RatingModal}/>
       </MovieCard>
@@ -23,7 +23,7 @@ export const MoviesGrid = ({ movies }: IMovieGrid) => {
 
   return (
     <>
-      <LoadingOverlay visible={loading} loaderProps={{children: <Loader color="grape" type="bars" />}} />
+      <Loader loading={loading} />
       {movies.length ? <Grid>{movieCol}</Grid> : <MoviesNotFound/>}
     </>
   );

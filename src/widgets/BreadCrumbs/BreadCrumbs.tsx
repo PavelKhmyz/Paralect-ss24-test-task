@@ -1,6 +1,5 @@
 import { Breadcrumbs } from '@mantine/core';
 import Link from 'next/link';
-import { wordCapitalize } from '@/shared/lib';
 
 interface IBreadCrumbsData {
   title: string;
@@ -9,15 +8,24 @@ interface IBreadCrumbsData {
 
 interface IBreadCrumbs {
   data: IBreadCrumbsData[];
+  className?: {
+    wrapper: string;
+    link: string;
+  };
 }
 
-export const BreadCrumbs = ({ data }: IBreadCrumbs) => {
+export const wordCapitalize = (word: string) => {
+  return word.charAt(0).toUpperCase() + word.slice(1);
+};
+
+
+export const BreadCrumbs = ({ data, className }: IBreadCrumbs) => {
   const breadCrumbsData = data.map(el =>
-    <Link className='breadcrumb-link' key={el.title} href={el.href}>{wordCapitalize(el.title)}</Link>
+    <Link className={className?.link} key={el.title} href={el.href}>{wordCapitalize(el.title)}</Link>
   );
 
   return (
-    <Breadcrumbs>
+    <Breadcrumbs className={className?.wrapper}>
       {breadCrumbsData}
     </Breadcrumbs>
   );

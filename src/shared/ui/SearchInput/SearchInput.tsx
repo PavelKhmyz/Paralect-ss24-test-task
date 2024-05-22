@@ -2,14 +2,20 @@
 
 import { Button, Input } from '@mantine/core';
 import { useState } from 'react';
-import { IconZoom } from '@tabler/icons-react';
+import { IconArrowRight, IconZoom } from '@tabler/icons-react';
 
 interface ISearchInput {
   placeholder: string;
   onSubmit: (value: string) => void;
+  classNames?: {
+    section: string;
+    input: string;
+    button: string;
+    arrowIcon: string;
+  }
 }
 
-export const SearchInput = ({ placeholder, onSubmit }: ISearchInput) => {
+export const SearchInput = ({ placeholder, onSubmit, classNames }: ISearchInput) => {
   const [value, setValue] = useState('');
 
   const handleChangeValue = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -24,8 +30,16 @@ export const SearchInput = ({ placeholder, onSubmit }: ISearchInput) => {
       onChange={handleChangeValue}
       rightSectionPointerEvents="all"
       leftSection={<IconZoom />}
+      classNames={classNames}
       rightSection={
-        <Button variant='filled' onClick={() => onSubmit(value)}>Search</Button>
+        <>
+          <Button className={classNames?.arrowIcon} variant='filled' onClick={() => onSubmit(value)}>
+            <IconArrowRight/>
+          </Button>
+          <Button className={classNames?.button} variant='filled' onClick={() => onSubmit(value)}>
+            Search
+          </Button>
+        </>
       }
     />
   );

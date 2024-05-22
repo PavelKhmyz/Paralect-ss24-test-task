@@ -1,6 +1,7 @@
-import { AspectRatio, Flex, Image } from '@mantine/core';
+import { AspectRatio, Flex} from '@mantine/core';
 import { IProductionCompanies, IVideos } from '@/shared/types';
-import './MovieDetails.style.scss';
+import { ImageComponent } from '@/shared/ui';
+import classes from './MovieDetails.module.scss';
 
 interface IMovieDetails {
   trailer?: IVideos[];
@@ -15,14 +16,14 @@ export const MovieDetails = ({ trailer, description, production }: IMovieDetails
 
   return (
     <Flex
-      className='movie-details-wrapper'
+      className={classes.movieDetailsWrapper}
       direction='column'
       gap='20'
     >
       {!!trailer?.length &&
-        <div className='movie-details-component-container'>
+        <div className={classes.movieDetailsComponentContainer}>
           <h3>Trailer</h3>
-          <AspectRatio ratio={16 / 9}>
+          <AspectRatio ratio={16 / 9} className={classes.aspectRatio}>
             <iframe
               src={process.env.NEXT_PUBLIC_YOUTUBE_BASE_URL && process.env.NEXT_PUBLIC_YOUTUBE_BASE_URL + trailer[0].key}
               title="YouTube video player"
@@ -34,7 +35,7 @@ export const MovieDetails = ({ trailer, description, production }: IMovieDetails
         </div>
       }
       {description &&
-        <div className='movie-details-component-container'>
+        <div className={classes.movieDetailsComponentContainer}>
           <h3>Description</h3>
           <p>
             {description}
@@ -42,18 +43,16 @@ export const MovieDetails = ({ trailer, description, production }: IMovieDetails
         </div>
       }
       {!!production?.length &&
-        <div className='movie-details-component-container'>
+        <div className={classes.movieDetailsComponentContainer}>
           <h3>Production</h3>
           {production.map(el => (
             <Flex
-              className='production-element'
+              className={classes.productionElement}
               key={el.id}
               direction='row'
               align='center'
             >
-              {el.logo_path &&
-                <Image src={`${process.env.NEXT_PUBLIC_TMDB_IMG_BASE_URL}w200${el.logo_path}`} alt='poster'/>
-              }
+              <ImageComponent posterPath={el.logo_path} className={classes.productionImage} width={40} height={40}/>
               <h4>{el.name}</h4>
             </Flex>
           ))}

@@ -1,0 +1,41 @@
+@use 'app/variable.module.scss' as v;
+
+.movieCardRateButton {
+  display: flex;
+  align-items: center;
+
+  &:hover svg{
+    fill: v.$purple400;
+  }
+
+  &:active svg {
+    fill: v.$purple600;
+  }
+
+  svg {
+    width: 28px;
+    height: 28px;
+  }
+
+  span {
+    font-weight: 600;
+    margin-left: 4px;
+  }
+
+  @media (max-width: v.$breakpoint-md) {
+    position: absolute;
+    right: 24px;
+    top: 24px;
+  }
+
+  @media (max-width: v.$breakpoint-xs) {
+    svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    span {
+      font-size: 14px;
+    }
+  }
+}

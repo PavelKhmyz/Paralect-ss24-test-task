@@ -1,0 +1,29 @@
+@use 'app/variable.module.scss' as v;
+
+.button {
+  display: none;
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  background-color: v.$grey100;
+
+  &:hover {
+    background-color: v.$purple400;
+
+    svg {
+      stroke: white;
+    }
+  }
+
+  &:active {
+    background-color: v.$purple600;
+
+    svg {
+      stroke: white;
+    }
+  }
+
+  @media (max-width: v.$breakpoint-sm) {
+    display: flex;
+  }
+}

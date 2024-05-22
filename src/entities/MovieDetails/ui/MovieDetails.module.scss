@@ -1,11 +1,11 @@
-@use 'app/variables' as v;
+@use 'app/variable.module' as v;
 
-.movie-details-wrapper {
+.movieDetailsWrapper {
   border-radius: 8px;
   background-color: white;
   padding: 24px;
 
-  .movie-details-component-container {
+  .movieDetailsComponentContainer {
     padding-bottom: 20px;
     border-bottom: 1px solid v.$grey300;
 
@@ -19,14 +19,14 @@
       font-size: 20px;
     }
 
-    .production-element {
+    .productionElement {
       margin-top: 16px;
 
       h4 {
         margin: 0;
       }
 
-      .mantine-Image-root {
+      .productionImage {
         width: 40px;
         height: 40px;
         margin-right: 8px;
@@ -42,7 +42,7 @@
     }
   }
 
-  .mantine-AspectRatio-root {
+  .aspectRatio {
     margin-top: 16px;
     width: 500px;
 

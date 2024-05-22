@@ -1,4 +1,5 @@
 import { Pagination } from '@mantine/core';
+import './Pagination.module.scss';
 
 interface IPaginationBar {
   page: number;

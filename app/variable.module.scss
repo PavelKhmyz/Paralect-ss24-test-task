@@ -1,0 +1,34 @@
+$purple100: #F2EBF9;
+$purple200: #E5D5FA;
+$purple300: #D1B4F8;
+$purple400: #BD93F7;
+$purple500: #9854F6;
+$purple600: #541F9D;
+$yellow-main: #FAB005;
+$grey100: #F5F5F6;
+$grey200: #EAEBED;
+$grey300: #D5D6DC;
+$grey500: #ACADB9;
+$grey600: #7B7C88;
+
+$breakpoint-xs: '36em';
+$breakpoint-sm: '48em';
+$breakpoint-md: '62em';
+$breakpoint-lg: '75em';
+$breakpoint-xl: '88em';
+
+
+:export {
+  purple100: $purple100;
+  purple200: $purple200;
+  purple300: $purple300;
+  purple400: $purple400;
+  purple500: $purple500;
+  purple600: $purple600;
+  yellowMain: $yellow-main;
+  grey100: $grey100;
+  grey200: $grey200;
+  grey300: $grey300;
+  grey500: $grey500;
+  grey600: $grey600;
+}
