@@ -1,22 +1,23 @@
-@use 'app/variable.module.scss' as v;
+@use 'app/variable.module' as v;
 
 .button {
   display: none;
   position: absolute;
   top: 30px;
   left: 30px;
+  border-radius: 8px;
   background-color: v.$grey100;
 
   &:hover {
-    background-color: v.$purple400;
+    background-color: inherit;
 
     svg {
-      stroke: white;
+      stroke: v.$purple400;
     }
   }
 
   &:active {
-    background-color: v.$purple600;
+    background-color: v.$purple400;
 
     svg {
       stroke: white;

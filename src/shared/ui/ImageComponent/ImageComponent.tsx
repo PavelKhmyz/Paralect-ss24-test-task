@@ -10,7 +10,7 @@ interface IImageComponent {
   className?: string;
 }
 
-export const ImageComponent = ({ posterPath, width = 100, height='auto', className }: IImageComponent) => {
+export const ImageComponent = ({ posterPath, width = 119, height='auto', className }: IImageComponent) => {
   return (
     posterPath
       ? <Image w={width} src={`${process.env.NEXT_PUBLIC_TMDB_IMG_BASE_URL}w200${posterPath}`} alt='poster' className={className}/>
@@ -26,7 +26,7 @@ export const ImageComponent = ({ posterPath, width = 100, height='auto', classNa
           backgroundColor: colors.grey200,
         }}
       >
-        <NextImage src={NoPoster} alt='no-poster' width={width} />
+        <NextImage src={NoPoster} alt='no-poster' width={width * 0.8} />
       </Flex>
   );
 };

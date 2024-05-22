@@ -49,7 +49,7 @@ export const RatedMovies = () => {
           </Grid.Col>
         </Grid>
         <MoviesGrid movies={searchedMovies} />
-        <PaginationBar page={page} totalPages={totalPages} onChange={handleChangePage} />
+        <PaginationBar page={page} totalPages={totalPages} onChange={handleChangePage}/>
       </Flex>
       : <EmptyState classNames={{ wrapper: classes.emptyRatedMoviesWrapper, button: classes.emptyStateButton }}/>
   );

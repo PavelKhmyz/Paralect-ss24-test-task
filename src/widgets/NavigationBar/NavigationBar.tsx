@@ -11,6 +11,9 @@ interface INavigationBar {
   onClick(): void
 }
 
+const ratedRegex = /\/rated-movies/;
+const moviesRegex = /\/movies|\/$/;
+
 export const NavigationBar = ({ onClick }: INavigationBar) => {
   const pathName = usePathname();
 
@@ -22,24 +25,29 @@ export const NavigationBar = ({ onClick }: INavigationBar) => {
     <>
       <Link
         href='/' className={classes.logoLink}
+        onClick={handleClose}
       >
         <Image src={Logo} alt='logo' />
       </Link>
       <Link
         href='/'
-        className={pathName === '/' ? classes.navLinkActive : classes.navLink}
+        className={pathName.match(moviesRegex) ? classes.navLinkActive : classes.navLink}
+        onClick={handleClose}
       >
         Movies
       </Link>
       <Link
         href={'/rated-movies'}
-        className={pathName === '/rated-movies' ? classes.navLinkActive : classes.navLink}
+        className={pathName.match(ratedRegex) ? classes.navLinkActive : classes.navLink}
+        onClick={handleClose}
       >
         Rated movies
       </Link>
       <CloseButton
         onClick={handleClose}
-        className={classes.closeButton}
+        classNames={{
+          root: classes.closeButton,
+        }}
       />
     </>
   );

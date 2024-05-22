@@ -126,11 +126,14 @@ export const FiltersBar = () => {
             error={validationErrors.genreError}
             onChange={handleChangeGenres}
             classNames={{
+              wrapper: classes.inputsWrapper,
+              root: classes.inputsRoot,
               input: classes.filtersInput,
               section: classes.filtersSection,
               label: classes.filtersLabel,
               option: classes.filtersOptions,
               dropdown: classes.filtersDropdown,
+              error: classes.filtersError,
             }}
           />
         </Grid.Col>
@@ -142,11 +145,14 @@ export const FiltersBar = () => {
             error={validationErrors.yearError}
             onChange={handleChangeReleaseYear}
             classNames={{
+              wrapper: classes.inputsWrapper,
+              root: classes.inputsRoot,
               input: classes.filtersInput,
-              section: classes.filtersSection,
+              section: classes.yearPickerSection,
               label: classes.filtersLabel,
               calendarHeader: classes.filtersYearHeader,
               yearsListControl: classes.filtersYearListControl,
+              error: classes.filtersError,
             }}
           />
         </Grid.Col>
@@ -160,9 +166,12 @@ export const FiltersBar = () => {
             error={validationErrors.ratingError}
             onChange={handleChangeRatingFromValue}
             classNames={{
+              wrapper: classes.inputsWrapper,
+              root: classes.inputsRoot,
               input: classes.filtersInput,
               section: classes.filtersSection,
               label: classes.filtersLabel,
+              error: classes.filtersError,
             }}
           />
         </Grid.Col>
@@ -175,9 +184,12 @@ export const FiltersBar = () => {
             error={validationErrors.ratingError}
             onChange={handleChangeRatingToValue}
             classNames={{
+              wrapper: classes.inputsWrapper,
+              root: classes.inputsRoot,
               input: classes.filtersInput,
               section: classes.filtersSection,
               label: classes.filtersLabel,
+              error: classes.filtersError,
             }}
           />
         </Grid.Col>
@@ -189,11 +201,14 @@ export const FiltersBar = () => {
             error={validationErrors.sortError}
             onChange={handleChangeSort}
             classNames={{
+              wrapper: classes.inputsWrapper,
+              root: classes.inputsRoot,
               input: classes.filtersInput,
               section: classes.filtersSection,
               label: classes.filtersLabel,
               option: classes.filtersOptions,
               dropdown: classes.filtersDropdown,
+              error: classes.filtersError,
             }}
           />
         </Grid.Col>
@@ -207,7 +222,7 @@ export const FiltersBar = () => {
           </UnstyledButton>
         </Grid.Col>
       </Grid>
-      <Grid justify='flex-end' className={classes.filtersSortWrapper} >
+      <Grid justify='flex-end' align='flex-end' className={classes.filtersSortWrapper} >
         <Grid.Col span={{ lg: 3.6, md: 5 }}>
           <SelectInput
             label='Sort by'
@@ -216,11 +231,14 @@ export const FiltersBar = () => {
             error={validationErrors.sortError}
             onChange={handleChangeSort}
             classNames={{
+              wrapper: classes.inputsWrapper,
+              root: classes.inputsRoot,
               input: classes.filtersInput,
               section: classes.filtersSection,
               label: classes.filtersLabel,
               option: classes.filtersOptions,
               dropdown: classes.filtersDropdown,
+              error: classes.filtersError,
             }}
           />
         </Grid.Col>

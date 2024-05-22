@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
 import { FiltersBar } from '@/features/filter-movies/ui/FiltersBar';
-import { Flex } from '@mantine/core';
+import { Box, Flex } from '@mantine/core';
 import { getAllRatedMovies } from '@/features/rate-movies';
 import { useAppDispatch, useAppSelector } from '@/shared/lib';
 import { MoviesGrid, PaginationBar } from '@/widgets';
 import { changePage } from '@/features/filter-movies';
 import classes from './Movies.module.scss';
+import { CollapsedFiltersBar } from '@/features/filter-movies/ui/CollapsedFiltersBar';
 
 export const Movies = () => {
   const dispatch = useAppDispatch();
@@ -29,9 +30,12 @@ export const Movies = () => {
       direction='column'
     >
       <h1>Movies</h1>
-      <FiltersBar />
+      <CollapsedFiltersBar />
+      <Box className={classes.filtersContainer}>
+        <FiltersBar />
+      </Box>
       <MoviesGrid movies={movies} />
-      <PaginationBar page={page} totalPages={totalPages} onChange={handleChangePage} />
+      <PaginationBar page={page} totalPages={totalPages} onChange={handleChangePage} justify='flex-end'/>
     </Flex>
   );
 };

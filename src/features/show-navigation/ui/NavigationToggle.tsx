@@ -1,12 +1,12 @@
-import { IconAdjustments, IconMenu2 } from '@tabler/icons-react';
 import { ActionIcon } from '@mantine/core';
-import classes from './Header.module.scss';
+import { IconChevronRight } from '@tabler/icons-react';
+import classes from './NavigationToggle.module.scss';
 
-interface IHeader {
+interface INavigationToggle {
   onClick(): void;
 }
 
-export const Header = ({ onClick }: IHeader) => {
+export const NavigationToggle = ({ onClick }: INavigationToggle) => {
   const handleClick = () => {
     onClick();
   };
@@ -14,10 +14,9 @@ export const Header = ({ onClick }: IHeader) => {
   return (
     <ActionIcon
       onClick={handleClick}
-      variant='filled'
       className={classes.button}
     >
-      <IconMenu2/>
+      <IconChevronRight/>
     </ActionIcon>
   );
 };

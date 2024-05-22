@@ -1,12 +1,15 @@
 @use 'app/variable.module.scss' as v;
 
-.mantine-Pagination-root {
-  display: flex;
-  justify-content: flex-end;
+.paginationWrapper {
+  margin-top: 24px;
+  gap: 8px;
 
-  .mantine-Pagination-control {
-    background-color: white;
-    border-color: v.$grey200;
+  .paginationControl {
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: 1px solid v.$grey300;
+    border-radius: 4px;
 
     &:hover {
       background-color: v.$purple100;
@@ -14,17 +17,35 @@
 
     &:active {
       background-color: v.$purple500;
-      color: white;
+
+      span {
+        color: white;
+      }
 
       svg {
-        path {
-          fill: white;
-        }
+        stroke: white;
       }
     }
 
-    &[data-active='true'] {
+    &[data-variant='filled'] {
       background-color: v.$purple500;
+      span {
+        color: white;
+      }
+    }
+
+    &[data-disabled='true'] {
+      background-color: white;
+
+      svg {
+        stroke: v.$grey300;
+      }
+    }
+
+    svg {
+      height: 16px;
+      width: 16px;
+      stroke: v.$grey600;
     }
   }
 }

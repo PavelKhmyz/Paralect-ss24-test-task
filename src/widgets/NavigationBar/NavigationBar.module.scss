@@ -36,6 +36,26 @@
     display: none;
     border-radius: 8px;
 
+    &:hover {
+        background-color: inherit !important;
+
+        svg {
+            path {
+                fill: v.$purple400;
+            }
+        }
+    }
+
+    &:active {
+        background-color: v.$purple400 !important;
+
+        svg {
+            path {
+                fill: white;
+            }
+        }
+    }
+
     @media (max-width: v.$breakpoint-sm) {
         display: flex;
     }

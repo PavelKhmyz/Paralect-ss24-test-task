@@ -58,7 +58,7 @@ export const MovieCard = ({ movie, children, extended=false }: IMovieCard) => {
       direction='row'
     >
       <Link href={pathName === '/' ? `movies/${movie.id}` : `${pathName}/${movie.id}`} className={classes.movieCardLink}>
-        <ImageComponent posterPath={movie.poster_path} width={119}/>
+        <ImageComponent posterPath={movie.poster_path} width={extended ? 250 : 119}/>
         <Flex direction='column'>
           <h2 className={classes.movieCardTitle}>{movie.title}</h2>
           <span className={classes.movieCardYear}>{releaseYear ? releaseYear : ''}</span>

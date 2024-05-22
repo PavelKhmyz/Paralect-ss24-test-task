@@ -3,7 +3,6 @@
 import { IconChevronDown } from '@tabler/icons-react';
 import { rem, Select } from '@mantine/core';
 import { useState } from 'react';
-import colors from 'app/variable.module.scss';
 
 interface ISelectInputData {
   value: string;
@@ -17,11 +16,14 @@ interface ISelectInput {
   data: ISelectInputData[];
   onChange: (value: string | null) => void;
   classNames?: {
+    wrapper: string;
+    root: string;
     input: string;
     section: string;
     label: string;
     option: string;
     dropdown: string;
+    error: string;
   }
 }
 
@@ -49,7 +51,6 @@ export const SelectInput = ({
         style={{
           width: rem(16),
           height: rem(16),
-          stroke: chevronPosition === 180 ? colors.purple500 : colors.grey500,
         }}
         transform={`rotate(${chevronPosition})`}
       />}

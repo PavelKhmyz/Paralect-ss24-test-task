@@ -10,8 +10,8 @@ import { NavigationBar } from '@/widgets';
 import '@mantine/core/styles.css';
 import '@mantine/dates/styles.css';
 import { useDisclosure } from '@mantine/hooks';
-import { Header } from '@/widgets/Header/Header';
-import classes from './layout.module.scss'
+import classes from './layout.module.scss';
+import { NavigationToggle } from '@/features/show-navigation';
 
 export default function Layout({
   children,
@@ -35,7 +35,7 @@ export default function Layout({
         <NavigationBar onClick={toggleMobile} />
       </AppShellNavbar>
       <AppShellMain>
-        <Header onClick={toggleMobile} />
+        <NavigationToggle onClick={toggleMobile} />
         {children}
       </AppShellMain>
     </AppShell>

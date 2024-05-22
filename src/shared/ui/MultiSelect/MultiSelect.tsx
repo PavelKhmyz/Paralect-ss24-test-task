@@ -3,7 +3,6 @@
 import { Combobox, Group, Input, InputBase, useCombobox, ScrollArea, rem } from '@mantine/core';
 import { useState } from 'react';
 import { IconChevronDown } from '@tabler/icons-react';
-import colors from 'app/variable.module.scss';
 
 interface IMultiSelectData {
   id: number | string;
@@ -19,11 +18,14 @@ interface IMultiSelect {
   placeholder?: string;
   error?: string;
   classNames?: {
+    wrapper: string;
+    root: string;
     input: string;
     section: string;
     label: string;
     option: string;
     dropdown: string;
+    error: string;
   }
 }
 
@@ -81,7 +83,6 @@ export const MultiSelect = ({
             style={{
               width: rem(16),
               height: rem(16),
-              stroke: chevronPosition === 180 ? colors.purple500 : colors.grey500,
             }}
             transform={`rotate(${chevronPosition})`} />}
           onClick={() => combobox.toggleDropdown()}

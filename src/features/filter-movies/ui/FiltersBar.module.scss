@@ -1,5 +1,52 @@
 @use 'app/variable.module' as v;
 
+.filtersCollapse {
+  display: none;
+  margin-bottom: 24px;
+
+  @media (max-width: v.$breakpoint-md) {
+    display: flex;
+  }
+
+  .burgerRoot {
+    border-radius: 8px;
+
+    &:hover {
+      .burger {
+        background-color: v.$purple400;
+
+        &::after {
+          background-color: v.$purple400;
+        }
+
+        &::before {
+          background-color: v.$purple400;
+        }
+      }
+
+      .burger[data-opened='true'] {
+        background-color: inherit;
+      }
+    }
+
+    &:active {
+      background-color: v.$purple200;
+
+      .burger {
+        background-color: v.$purple500;
+
+        &::after {
+          background-color: v.$purple500;
+        }
+
+        &::before {
+          background-color: v.$purple500;
+        }
+      }
+    }
+  }
+}
+
 .filtersWrapper {
   margin-bottom: 24px;
 }
@@ -20,6 +67,16 @@
   }
 }
 
+.inputsRoot {
+  position: relative;
+}
+
+.inputsWrapper {
+  &[data-error='true'] {
+    margin-bottom: 0;
+  }
+}
+
 .filtersInput {
   border-radius: 8px;
   margin-top: 8px;
@@ -27,7 +84,25 @@
   line-height: 20px;
   overflow: hidden;
 
-  &[aria-expanded="true"] + .section {
+  &[data-error='true'] {
+    &:focus {
+      border-color: #fa5252;
+    }
+  }
+
+  &:focus + .yearPickerSection {
+    svg {
+      stroke: v.$purple500;
+    }
+  }
+
+  &:focus + .filtersSection {
+    svg {
+      stroke: v.$purple500;
+    }
+  }
+
+  &[aria-expanded="true"] + .yearPickerSection {
     svg {
       transform: rotate(180deg);
       stroke: v.$purple500;
@@ -41,33 +116,21 @@
   &:focus {
     border-color: v.$purple500;
   }
+}
 
-  &:focus + .mantine-NumberInput-section {
-    svg {
-      stroke: v.$purple500;
-    }
-  }
-
-  &:focus + .mantine-InputBase-section {
-    svg {
-      stroke: v.$purple500;
-    }
-  }
-
-  &:focus + .mantine-YearPickerInput-section {
-    svg {
-      stroke: v.$purple500;
-    }
-  }
-
-  &:focus + .mantine-Select-section {
-    svg {
-      stroke: v.$purple500;
-    }
-  }
+.filtersError {
+  position: absolute;
+  bottom: -20px;
+  left: 10px;
 }
 
 .filtersSection {
+  svg {
+    stroke: v.$grey500;
+  }
+}
+
+.yearPickerSection {
   svg {
     stroke: v.$grey500;
   }
