@@ -1,6 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { serverMoviesRepository, paramsValidator, genresValidator, removeFalsyElement } from '@/shared/lib';
 import { IGenres } from '@/shared/types';
+import {
+  serverMoviesRepository,
+  paramsValidator,
+  genresValidator,
+  removeFalsyElement,
+} from '@/shared/lib';
 
 interface IGetGenres {
   language: string;

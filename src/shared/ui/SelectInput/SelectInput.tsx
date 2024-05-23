@@ -16,14 +16,14 @@ interface ISelectInput {
   data: ISelectInputData[];
   onChange: (value: string | null) => void;
   classNames?: {
-    wrapper: string;
-    root: string;
-    input: string;
-    section: string;
-    label: string;
-    option: string;
-    dropdown: string;
-    error: string;
+    wrapper?: string;
+    root?: string;
+    input?: string;
+    section?: string;
+    label?: string;
+    option?: string;
+    dropdown?: string;
+    error?: string;
   }
 }
 

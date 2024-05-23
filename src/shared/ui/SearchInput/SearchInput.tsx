@@ -8,10 +8,10 @@ interface ISearchInput {
   placeholder: string;
   onSubmit: (value: string) => void;
   classNames?: {
-    section: string;
-    input: string;
-    button: string;
-    arrowIcon: string;
+    section?: string;
+    input?: string;
+    button?: string;
+    arrowIcon?: string;
   }
 }
 

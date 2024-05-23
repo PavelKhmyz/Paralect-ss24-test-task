@@ -9,14 +9,14 @@ interface IYearInput {
   error: string;
   onChange: (value: DateValue) => void;
   classNames?: {
-    wrapper: string;
-    root: string;
-    input: string;
-    section: string;
-    label: string;
-    calendarHeader: string;
-    yearsListControl: string;
-    error: string;
+    wrapper?: string;
+    root?: string;
+    input?: string;
+    section?: string;
+    label?: string;
+    calendarHeader?: string;
+    yearsListControl?: string;
+    error?: string;
   }
 }
 

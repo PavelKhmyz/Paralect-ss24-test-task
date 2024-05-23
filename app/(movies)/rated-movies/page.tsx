@@ -1,5 +1,5 @@
 'use client';
 
-import { RatedMovies } from '@/views/rated-movies/RatedMovies';
+import { RatedMovies } from '@/views';
 
 export default RatedMovies;

@@ -1,9 +1,9 @@
 import { IconStarFilled } from '@tabler/icons-react';
 import { UnstyledButton } from '@mantine/core';
+import { useDisclosure } from '@mantine/hooks';
 import { useAppDispatch, useAppSelector } from '@/shared/lib';
 import { IRatingModal, removeRating, setRating } from '@/features/rate-movies';
-import { useDisclosure } from '@mantine/hooks';
-import { IMovieExtended } from '@/entities/MovieCard/ui/MovieCard';
+import { IMovieExtended } from '@/entities/MovieCard';
 import { IMovie } from '@/shared/types';
 import classes from './RatingButton.module.scss';
 

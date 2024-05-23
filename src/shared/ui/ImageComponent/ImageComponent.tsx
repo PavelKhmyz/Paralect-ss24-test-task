@@ -1,7 +1,7 @@
 import { Flex, Image } from '@mantine/core';
 import NextImage from 'next/image';
 import NoPoster from 'public/NoPoster.svg';
-import colors from 'app/variable.module.scss';
+import colors from '@/shared/styles/variable.module.scss';
 
 interface IImageComponent {
   posterPath?: string;

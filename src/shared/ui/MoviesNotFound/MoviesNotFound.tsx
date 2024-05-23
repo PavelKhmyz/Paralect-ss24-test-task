@@ -1,6 +1,5 @@
-import NextImage from 'next/image';
 import { Flex } from '@mantine/core';
-import React from 'react';
+import NextImage from 'next/image';
 import MoviesNotFoundImg from 'public/MoviesNotFound.svg';
 
 export const MoviesNotFound = () => {

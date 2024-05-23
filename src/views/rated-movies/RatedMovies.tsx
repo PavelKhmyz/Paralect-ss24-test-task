@@ -1,9 +1,8 @@
 import { useEffect } from 'react';
-import { useAppDispatch, useAppSelector } from '@/shared/lib';
 import { Flex, Grid } from '@mantine/core';
-import { SearchInput } from '@/shared/ui';
+import { useAppDispatch, useAppSelector } from '@/shared/lib';
+import { SearchInput, EmptyState } from '@/shared/ui';
 import { changePage, getAllRatedMovies, searchMovie } from '@/features/rate-movies';
-import { EmptyState } from '@/shared/ui';
 import { MoviesGrid, PaginationBar } from '@/widgets';
 import { getGenres } from '@/features/filter-movies';
 import classes from './RatedMovies.module.scss';

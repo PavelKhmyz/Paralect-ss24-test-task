@@ -1,8 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { serverMoviesRepository } from '@/shared/lib/repositories/movieRepository';
-import { paramsValidator } from '@/shared/lib/validators/paramsValidator';
-import { movieDetailsValidator } from '@/shared/lib/validators/validators';
 import { IMovieDetails } from '@/shared/types';
+import {
+  serverMoviesRepository,
+  paramsValidator,
+  movieDetailsValidator,
+} from '@/shared/lib';
 
 interface IGetMovieDetails {
   language: string;

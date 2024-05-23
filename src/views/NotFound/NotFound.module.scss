@@ -1,6 +1,6 @@
-@use './variables' as v;
+@use '@/shared/styles/variable.module' as v;
 
-.not-found-wrapper {
+.notFoundWrapper {
   height: 100vh;
   background-color: v.$grey100;
 
@@ -10,7 +10,7 @@
     margin-bottom: 0;
   }
 
-  .mantine-Button-root {
+  .button {
     border-radius: 8px;
     background-color: v.$purple500;
     padding: 10px 20px 10px 20px;

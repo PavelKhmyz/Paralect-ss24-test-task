@@ -1,6 +1,5 @@
 import { Loader as Load, LoadingOverlay } from '@mantine/core';
-import React from 'react';
-import colors from 'app/variable.module.scss';
+import colors from '@/shared/styles/variable.module.scss';
 
 interface ILoader {
   loading: boolean;

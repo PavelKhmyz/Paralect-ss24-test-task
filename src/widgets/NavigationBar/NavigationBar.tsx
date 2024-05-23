@@ -1,10 +1,10 @@
 'use client';
 
 import Image from 'next/image';
-import Logo from 'public/Logo.svg';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { CloseButton } from '@mantine/core';
+import Logo from 'public/Logo.svg';
 import classes from './NavigationBar.module.scss';
 
 interface INavigationBar {

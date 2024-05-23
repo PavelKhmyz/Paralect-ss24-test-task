@@ -10,12 +10,12 @@ interface INumberInput {
   onChange: (value: string | number) => void;
   label?: string;
   classNames?: {
-    wrapper: string;
-    root: string;
-    input: string;
-    section: string;
-    label: string;
-    error: string;
+    wrapper?: string;
+    root?: string;
+    input?: string;
+    section?: string;
+    label?: string;
+    error?: string;
   }
 }
 

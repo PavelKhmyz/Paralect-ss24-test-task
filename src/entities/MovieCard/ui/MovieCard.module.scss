@@ -1,4 +1,4 @@
-@use 'app/variable.module.scss' as v;
+@use '@/shared/styles/variable.module' as v;
 
 .movieCardWrapper {
   border-radius: 12px;

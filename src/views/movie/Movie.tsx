@@ -1,14 +1,14 @@
 import { notFound } from 'next/navigation';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Flex } from '@mantine/core';
 import { clientMoviesRepository } from '@/shared/lib';
+import { Loader } from '@/shared/ui';
 import { IMovieDetails } from '@/shared/types';
 import { MovieDetails } from '@/entities/MovieDetails';
 import { MovieCard } from '@/entities/MovieCard';
 import { RatingButton, RatingModal } from '@/features/rate-movies';
 import { BreadCrumbs } from '@/widgets';
 import classes from './Movie.module.scss';
-import { Loader } from '@/shared/ui';
 
 const navigateRegex = /(movie|rated-movie)/;
 

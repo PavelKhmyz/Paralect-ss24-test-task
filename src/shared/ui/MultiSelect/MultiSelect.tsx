@@ -1,8 +1,16 @@
 'use client';
 
-import { Combobox, Group, Input, InputBase, useCombobox, ScrollArea, rem } from '@mantine/core';
 import { useState } from 'react';
 import { IconChevronDown } from '@tabler/icons-react';
+import {
+  Combobox,
+  Group,
+  Input,
+  InputBase,
+  useCombobox,
+  ScrollArea,
+  rem,
+} from '@mantine/core';
 
 interface IMultiSelectData {
   id: number | string;
@@ -18,14 +26,14 @@ interface IMultiSelect {
   placeholder?: string;
   error?: string;
   classNames?: {
-    wrapper: string;
-    root: string;
-    input: string;
-    section: string;
-    label: string;
-    option: string;
-    dropdown: string;
-    error: string;
+    wrapper?: string;
+    root?: string;
+    input?: string;
+    section?: string;
+    label?: string;
+    option?: string;
+    dropdown?: string;
+    error?: string;
   }
 }
 

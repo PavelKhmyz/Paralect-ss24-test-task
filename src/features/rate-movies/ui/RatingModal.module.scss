@@ -1,12 +1,12 @@
-@use 'app/variables' as v;
+@use '@/shared/styles/variable.module' as v;
 
-.mantine-Modal-content {
+.modalContent {
   border-radius: 8px;
 
-  .mantine-Modal-header {
+  .modalHeader {
     border-bottom: 1px solid v.$grey200;
 
-    .mantine-Modal-close{
+    .modalClose{
       border-radius: 8px;
 
       svg {
@@ -35,25 +35,29 @@
     }
   }
 
-  .mantine-Modal-body {
+  .modalBody {
     padding: 16px;
     gap: 16px;
 
-    .modal-title {
+    @media (max-width: v.$breakpoint-xs) {
+      padding: 4px;
+    }
+
+    .modalTitle {
       margin-top: 0;
       margin-bottom: 16px;
     }
 
-    .mantine-Rating-root {
+    .ratingRoot {
       justify-content: space-between;
     }
 
-    .modal-buttons{
+    .modalButtons{
       margin-top: 16px;
       display: flex;
       gap: 16px;
 
-      .mantine-Button-root {
+      .buttonRoot {
         border-radius: 8px;
         background-color: v.$purple500;
 
@@ -70,7 +74,7 @@
         }
       }
 
-      .mantine-UnstyledButton-root {
+      .unstyledButtonRoot {
         color: v.$purple500;
         font-size: 14px;
         font-weight: 600;

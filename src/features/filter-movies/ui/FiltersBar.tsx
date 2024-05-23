@@ -2,19 +2,20 @@
 
 import { Grid, UnstyledButton } from '@mantine/core';
 import { DateValue } from '@mantine/dates';
-import { useAppDispatch, useAppSelector } from '@/shared/lib/hooks/redux';
+import { useCallback, useEffect, useState } from 'react';
+import { useAppDispatch, useAppSelector, moviesValidator, paramsValidator } from '@/shared/lib';
+import { filterSortParams } from '@/features/filter-movies/lib/FiltersBar.constants';
+import { MultiSelect, SelectInput, YearInput, NumberInput } from '@/shared/ui';
 import {
   changeFiltersError,
   changeGenre, changeRatingGte, changeRatingLte,
   changeSort,
-  changeYear, getGenres,
+  changeYear,
+  getGenres,
   resetFilters,
+  getMovies,
+  IGetMovies,
 } from '@/features/filter-movies';
-import { useCallback, useEffect, useState } from 'react';
-import { filterSortParams } from '@/features/filter-movies/lib/FiltersBar.constants';
-import { MultiSelect, SelectInput, YearInput, NumberInput } from '@/shared/ui';
-import { moviesValidator, paramsValidator } from '@/shared/lib';
-import { getMovies, IGetMovies } from '@/features/filter-movies/lib/Movies.slice';
 import classes from './FiltersBar.module.scss';
 
 export const FiltersBar = () => {

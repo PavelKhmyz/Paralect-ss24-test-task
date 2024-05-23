@@ -1,9 +1,8 @@
-import { RatingButton, RatingModal } from '@/features/rate-movies';
 import { Grid } from '@mantine/core';
+import { RatingButton, RatingModal } from '@/features/rate-movies';
 import { MovieCard } from '@/entities/MovieCard';
 import { IMovie } from '@/shared/types';
 import { Loader, MoviesNotFound } from '@/shared/ui';
-import React from 'react';
 import { useAppSelector } from '@/shared/lib';
 
 interface IMovieGrid {

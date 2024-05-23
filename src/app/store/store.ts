@@ -1,7 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { moviesReducer } from '@/features/filter-movies/lib/Movies.slice';
-import { filtersReducer } from '@/features/filter-movies/lib/Filters.slice';
-import { ratedMoviesReducer } from '@/features/rate-movies/lib/RatedMovies.slice';
+import { moviesReducer, filtersReducer } from '@/features/filter-movies';
+import { ratedMoviesReducer } from '@/features/rate-movies';
 
 export const makeStore = () => {
   return configureStore({

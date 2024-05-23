@@ -1,5 +1,5 @@
 'use client';
 
-import { Movies } from '@/views/movies/Movies';
+import { Movies } from '@/views';
 
 export default Movies;

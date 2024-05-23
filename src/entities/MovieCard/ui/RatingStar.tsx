@@ -1,6 +1,6 @@
 import { IconStarFilled } from '@tabler/icons-react';
 import { voteParser } from '@/entities/MovieCard';
-import colors from 'app/variable.module.scss';
+import colors from '@/shared/styles/variable.module.scss';
 
 interface IRatingStar {
   voteAverage?: number;

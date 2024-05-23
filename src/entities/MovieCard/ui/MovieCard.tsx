@@ -1,16 +1,16 @@
 'use client';
 
 import { Flex } from '@mantine/core';
-import { useAppDispatch, useAppSelector } from '@/shared/lib/hooks/redux';
 import Link from 'next/link';
 import { useEffect } from 'react';
-import { getGenres } from '@/features/filter-movies/lib/Filters.slice';
 import { usePathname } from 'next/navigation';
+import { useAppDispatch, useAppSelector } from '@/shared/lib/';
+import { getGenres } from '@/features/filter-movies/';
 import { IGenre } from '@/shared/types';
 import { currencyParses, dateParser, durationParser } from '@/entities/MovieCard';
 import { MovieTableElement } from './MovieTableElement';
 import { ImageComponent } from '@/shared/ui';
-import { RatingStar } from '@/entities/MovieCard/ui/RatingStar';
+import { RatingStar } from './RatingStar';
 import classes from './MovieCard.module.scss';
 
 export interface IMovieExtended {

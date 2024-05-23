@@ -2,7 +2,7 @@
 
 import { Button, Modal, Rating, UnstyledButton } from '@mantine/core';
 import { useState } from 'react';
-import './RatingModal.style.scss';
+import classes from './RatingModal.module.scss';
 
 export interface IRatingModal {
   opened: boolean;
@@ -31,12 +31,48 @@ export const RatingModal = ({ opened, title, rating, onConfirm, onReset, onClose
   };
 
   return (
-    <Modal opened={opened} onClose={onClose} title='Your rating' size='sm' centered>
-      <h4 className='modal-title'>{title}</h4>
-      <Rating value={userRating} onChange={handleChangeRating} count={10} size='lg' w='100%' fractions={10}/>
-      <div className='modal-buttons'>
-        <Button variant='filled' onClick={handleConfirm}>Save</Button>
-        <UnstyledButton onClick={handleRemoveRating}>Remove rating</UnstyledButton>
+    <Modal
+      opened={opened}
+      onClose={onClose}
+      title='Your rating'
+      size='sm' centered
+      classNames={{
+        content: classes.modalContent,
+        header: classes.modalHeader,
+        close: classes.modalClose,
+        body: classes.modalBody,
+      }}
+    >
+      <h4 className={classes.modalTitle}>{title}</h4>
+      <Rating
+        value={userRating}
+        onChange={handleChangeRating}
+        count={10}
+        size='lg'
+        w='100%'
+        fractions={10}
+        classNames={{
+          root: classes.ratingRoot,
+        }}
+      />
+      <div className={classes.modalButtons}>
+        <Button
+          variant='filled'
+          onClick={handleConfirm}
+          classNames={{
+            root: classes.buttonRoot,
+          }}
+        >
+          Save
+        </Button>
+        <UnstyledButton
+          onClick={handleRemoveRating}
+          classNames={{
+            root: classes.unstyledButtonRoot,
+          }}
+        >
+          Remove rating
+        </UnstyledButton>
       </div>
     </Modal>
   );

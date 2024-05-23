@@ -1,12 +1,10 @@
-import React, { useEffect } from 'react';
-import { FiltersBar } from '@/features/filter-movies/ui/FiltersBar';
+import { useEffect } from 'react';
 import { Box, Flex } from '@mantine/core';
+import { FiltersBar, changePage, CollapsedFiltersBar } from '@/features/filter-movies';
 import { getAllRatedMovies } from '@/features/rate-movies';
 import { useAppDispatch, useAppSelector } from '@/shared/lib';
 import { MoviesGrid, PaginationBar } from '@/widgets';
-import { changePage } from '@/features/filter-movies';
 import classes from './Movies.module.scss';
-import { CollapsedFiltersBar } from '@/features/filter-movies/ui/CollapsedFiltersBar';
 
 export const Movies = () => {
   const dispatch = useAppDispatch();

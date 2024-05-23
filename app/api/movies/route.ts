@@ -1,7 +1,12 @@
 import { NextResponse } from 'next/server';
-import { serverMoviesRepository, paramsValidator, moviesValidator, removeFalsyElement } from '@/shared/lib';
-import { IGetMovies } from '@/features/filter-movies/lib/Movies.slice'; //TODO: refactor this import after replacing movies.slice
+import { IGetMovies } from '@/features/filter-movies';
 import { IMovies } from '@/shared/types';
+import {
+  serverMoviesRepository,
+  paramsValidator,
+  moviesValidator,
+  removeFalsyElement,
+} from '@/shared/lib';
 
 export const GET = async (request: Request) => {
   const { searchParams } = new URL(request.url);
