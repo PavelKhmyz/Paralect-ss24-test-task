@@ -4,7 +4,7 @@ import {
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { NavigationToggle } from '@/features/show-navigation';
-import { NavigationBar } from '@/widgets';
+import { ErrorModal, NavigationBar } from '@/widgets';
 
 export const PageLayout = ({
   children,
@@ -25,6 +25,7 @@ export const PageLayout = ({
       <AppShellMain>
         <NavigationToggle onClick={toggleMobile} />
         {children}
+        <ErrorModal />
       </AppShellMain>
     </AppShell>
   );

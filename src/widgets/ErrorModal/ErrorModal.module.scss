@@ -1,0 +1,71 @@
+@use '@/shared/styles/variable.module' as v;
+
+.title {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.modalContent {
+  border-radius: 8px;
+
+  .modalBody {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 16px;
+    gap: 16px;
+
+    .buttonRoot {
+      border-radius: 8px;
+      background-color: v.$purple500;
+
+      span {
+        color: white;
+      }
+
+      &:hover {
+        background-color: v.$purple400;
+      }
+
+      &:active {
+        background-color: v.$purple600;
+      }
+    }
+  }
+}
+
+.modalHeader {
+  border-bottom: 1px solid v.$grey200;
+
+  .modalClose{
+    border-radius: 8px;
+
+    svg {
+      path {
+        fill: v.$grey500;
+      }
+    }
+
+    &:focus-visible {
+      outline: none;
+    }
+
+    &:hover {
+      background-color: inherit;
+
+      svg {
+        path {
+          fill: v.$purple400;
+        }
+      }
+    }
+
+    &:active {
+      svg {
+        path {
+          fill: v.$purple600;
+        }
+      }
+    }
+  }
+}
