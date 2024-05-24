@@ -33,7 +33,12 @@ export const Movies = () => {
         <FiltersBar />
       </Box>
       <MoviesGrid movies={movies} />
-      <PaginationBar page={page} totalPages={totalPages} onChange={handleChangePage} justify='flex-end'/>
+      <PaginationBar
+        page={page}
+        totalPages={totalPages}
+        onChange={handleChangePage}
+        justify='flex-end'
+      />
     </Flex>
   );
 };

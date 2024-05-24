@@ -1,14 +1,10 @@
-'use client';
-
 import {
   AppShell,
   AppShellMain,
-  AppShellNavbar,
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { NavigationToggle } from '@/features/show-navigation';
 import { NavigationBar } from '@/widgets';
-import classes from './layout.module.scss';
 
 export const PageLayout = ({
   children,
@@ -25,16 +21,11 @@ export const PageLayout = ({
         collapsed: { mobile: !mobileOpened },
       }}
     >
-      <AppShellNavbar
-        className={classes.navBar}
-        withBorder={false}
-      >
-        <NavigationBar onClick={toggleMobile} />
-      </AppShellNavbar>
+      <NavigationBar onClick={toggleMobile} />
       <AppShellMain>
         <NavigationToggle onClick={toggleMobile} />
         {children}
       </AppShellMain>
     </AppShell>
   );
-}
+};

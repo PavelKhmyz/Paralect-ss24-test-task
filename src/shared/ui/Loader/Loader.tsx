@@ -7,6 +7,11 @@ interface ILoader {
 
 export const Loader = ({ loading }: ILoader) => {
   return (
-    <LoadingOverlay visible={loading} loaderProps={{children: <Load color={colors.purple400} type='bars' />}} />
+    <LoadingOverlay
+      visible={loading}
+      loaderProps={{
+        children: <Load color={colors.purple400} type='bars' />,
+      }}
+    />
   );
 };

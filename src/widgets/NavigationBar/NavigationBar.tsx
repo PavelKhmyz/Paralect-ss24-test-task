@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { CloseButton } from '@mantine/core';
+import { AppShellNavbar, CloseButton } from '@mantine/core';
 import Logo from 'public/Logo.svg';
 import classes from './NavigationBar.module.scss';
 
@@ -22,7 +22,10 @@ export const NavigationBar = ({ onClick }: INavigationBar) => {
   };
 
   return (
-    <>
+    <AppShellNavbar
+      className={classes.navBar}
+      withBorder={false}
+    >
       <Link
         href='/' className={classes.logoLink}
         onClick={handleClose}
@@ -49,6 +52,6 @@ export const NavigationBar = ({ onClick }: INavigationBar) => {
           root: classes.closeButton,
         }}
       />
-    </>
+    </AppShellNavbar>
   );
 };

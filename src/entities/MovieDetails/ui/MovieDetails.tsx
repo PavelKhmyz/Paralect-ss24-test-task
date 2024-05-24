@@ -26,9 +26,9 @@ export const MovieDetails = ({ trailer, description, production }: IMovieDetails
           <AspectRatio ratio={16 / 9} className={classes.aspectRatio}>
             <iframe
               src={process.env.NEXT_PUBLIC_YOUTUBE_BASE_URL && process.env.NEXT_PUBLIC_YOUTUBE_BASE_URL + trailer[0].key}
-              title="YouTube video player"
+              title='YouTube video player'
               style={{ border: 0 }}
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
               allowFullScreen
             />
           </AspectRatio>

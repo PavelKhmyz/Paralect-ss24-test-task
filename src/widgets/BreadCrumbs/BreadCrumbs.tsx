@@ -9,8 +9,8 @@ interface IBreadCrumbsData {
 interface IBreadCrumbs {
   data: IBreadCrumbsData[];
   className?: {
-    wrapper: string;
-    link: string;
+    wrapper?: string;
+    link?: string;
   };
 }
 

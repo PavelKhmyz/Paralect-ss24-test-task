@@ -69,7 +69,13 @@ export const Movie = ({ params }: IMovie) => {
       className={classes.movieWrapper}
     >
       <Loader loading={loading}/>
-      <BreadCrumbs data={breadCrumbsData} className={{ wrapper: classes.breadcrumbsWrapper, link: classes.breadcrumbLink }}/>
+      <BreadCrumbs
+        data={breadCrumbsData}
+        className={{
+          wrapper: classes.breadcrumbsWrapper,
+          link: classes.breadcrumbLink,
+        }}
+      />
       {movie &&
         <>
           <MovieCard movie={movie} extended={true}>

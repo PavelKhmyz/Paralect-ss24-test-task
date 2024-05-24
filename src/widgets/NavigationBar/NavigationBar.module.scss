@@ -1,5 +1,11 @@
 @use '@/shared/styles/variable.module' as v;
 
+.navBar {
+    gap: 10px;
+    background-color: v.$purple100;
+    padding: 24px;
+}
+
 .navLink {
     width: 232px;
     height: 42px;

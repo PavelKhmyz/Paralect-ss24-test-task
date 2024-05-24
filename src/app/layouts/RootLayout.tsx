@@ -10,7 +10,7 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'Arrow Flicks',
-  description: 'Test task for paralect summer-startup 2024',
+  description: 'Test task for paralect startup-summer-2024',
 };
 
 export const RootLayout = ({

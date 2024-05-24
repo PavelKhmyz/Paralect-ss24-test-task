@@ -1,5 +1,5 @@
-const millionsDivider = 1000000;
 const thousandsDivider = 1000;
+const millionsDivider = thousandsDivider * thousandsDivider;
 
 export const currencyParses = (currency?: number) => {
   if(!currency) {
